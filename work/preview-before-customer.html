@@ -1,0 +1,271 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Herzlinien — Vorschau / Manual de copy</title>
+<style>
+:root{--ink:#193c34;--gold:#b59759;--paper:#faf7ef;--muted:#61756a}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}header{padding:16px 5vw;border-bottom:1px solid #deded2;display:flex;gap:15px;justify-content:space-between;align-items:center}header strong{letter-spacing:3px;font-size:13px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button:disabled{opacity:.4;cursor:not-allowed}.pill{font-size:11px;letter-spacing:1px;background:#e8ecdf;border-radius:30px;padding:5px 12px}main{max-width:780px;margin:45px auto;padding:0 25px 60px}h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.15}h1{font-size:clamp(34px,6vw,55px);margin:20px 0}h2{font-size:34px}h3{font-size:24px}p{margin:16px 0}small,.muted{color:var(--muted)}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:11px;color:#897441}.cta{background:var(--ink);color:white;border:0;border-radius:8px;padding:16px 22px;font-weight:600}.secondary{background:transparent;color:var(--ink);border:1px solid #bcc6b9;border-radius:8px;padding:12px 18px}.choices{display:grid;gap:11px;margin:28px 0}.choice{display:block;background:white;border:1px solid #d9ded3;border-radius:10px;padding:17px 20px;text-align:left;color:var(--ink);width:100%}.choice:hover,.choice.selected{border-color:var(--ink);background:#eef2e8}.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.card{border:1px solid #d6dccd;background:#fffdf7;border-radius:16px;padding:25px;margin:24px 0}.expert{display:flex;align-items:center;gap:16px;margin:25px 0}.portrait{width:75px;height:90px;background:#e0e5d7;border-radius:40px 40px 12px 12px;display:flex;align-items:center;justify-content:center}.portrait svg{width:54px;height:70px}.notes{display:none;background:#edf0e6;border-left:3px solid var(--gold);padding:14px 18px;margin:18px 0;font-size:13px}.show-notes .notes{display:block}.bar{height:3px;background:#dfe4d7;margin:25px 0}.bar span{display:block;height:100%;background:var(--gold);transition:width .3s}.nav{display:flex;justify-content:space-between;margin-top:25px;gap:15px}.fine{font-size:12px}.photo{width:100%;max-height:340px;object-fit:contain;border-radius:12px;background:#edf0e6}.upload{border:1px dashed #9ba991;padding:24px;border-radius:12px}input[type=text],input[type=email]{width:100%;padding:15px;border:1px solid #bdc9b7;border-radius:8px;background:white;color:var(--ink)}.price{font:42px Georgia,serif}.check{padding:15px;border:1px solid #b7c3aa;border-radius:10px;display:flex;gap:12px;align-items:flex-start;margin-top:18px}input[type=checkbox]{width:20px;height:20px;accent-color:var(--ink)}.scan{height:190px;background:#e7ecdf;position:relative;border-radius:12px;overflow:hidden}.scan:after{content:"";position:absolute;left:10%;right:10%;height:2px;background:var(--gold);animation:sweep 1.4s infinite alternate;box-shadow:0 0 20px var(--gold)}@keyframes sweep{from{top:20%}to{top:80%}}@media(prefers-reduced-motion:reduce){.scan:after{animation:none;top:50%}}footer{font-size:12px;color:#6a786c;padding:20px 5vw;border-top:1px solid #deded2}.map{display:flex;justify-content:center;background:#eff1e7;border-radius:12px;padding:15px}.map svg{max-width:240px;width:100%;height:230px}a{color:var(--ink)}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:600px){.two{grid-template-columns:1fr}header{flex-wrap:wrap}main{margin-top:25px}.card{padding:19px}}
+</style>
+<header><strong>HERZLINIEN</strong><span class="pill">PROTÓTIPO · SEM COMPRA REAL</span><button class="secondary" id="notesButton" aria-pressed="false">PT + notas</button></header><main id="app" aria-live="polite"></main><footer>Maquete de copy · Foto somente na memória desta página · Sem envio, IA ou pagamento · <a href="manual-copy-quiz-herzlinien.md">Abrir manual</a> · <button class="secondary" id="reset">Recomeçar</button></footer>
+<script>const D={
+  "questions": [
+    {
+      "id": "goal",
+      "title": "Was führt dich heute zu deiner Herzlinie?",
+      "pt": "O que te trouxe hoje à sua linha do coração?",
+      "why": "Escolhe a intenção; não presume sofrimento. R01–R05, YouTube 7 e 11.",
+      "options": [
+        [
+          "connection",
+          "Ich möchte eine bestimmte Verbindung besser verstehen.",
+          "Quero entender melhor uma conexão específica."
+        ],
+        [
+          "closure",
+          "Ich möchte mit einer vergangenen Liebe Frieden schließen.",
+          "Quero fazer as pazes com um amor do passado."
+        ],
+        [
+          "new",
+          "Ich möchte mich für eine neue Liebe öffnen.",
+          "Quero me abrir para um novo amor."
+        ]
+      ]
+    },
+    {
+      "id": "context",
+      "title": "Wie fühlt sich deine Situation gerade an?",
+      "pt": "Como você sente sua situação neste momento?",
+      "why": "Contextualiza o capítulo principal. As alternativas mudam com Q1.",
+      "branches": {
+        "connection": [
+          [
+            "mixed",
+            "Mal spüre ich Nähe, dann wieder Abstand.",
+            "Às vezes sinto proximidade, depois distância."
+          ],
+          [
+            "silence",
+            "Wir haben gerade keinen Kontakt.",
+            "Estamos sem contato."
+          ],
+          [
+            "together",
+            "Wir sind zusammen, aber etwas bleibt für mich offen.",
+            "Estamos juntos, mas algo permanece em aberto para mim."
+          ],
+          [
+            "good",
+            "Es fühlt sich gut an. Ich bin einfach neugierig.",
+            "Está tudo bem. Estou apenas curiosa."
+          ]
+        ],
+        "closure": [
+          [
+            "thoughts",
+            "Ich denke noch oft an diese Person.",
+            "Ainda penso muito nessa pessoa."
+          ],
+          [
+            "questions",
+            "Für mich sind Fragen offen geblieben.",
+            "Algumas perguntas ficaram sem resposta."
+          ],
+          [
+            "ready",
+            "Ich bin bereit für einen neuen Anfang.",
+            "Estou pronta para um recomeço."
+          ],
+          [
+            "meaning",
+            "Ich möchte verstehen, was diese Geschichte für mich bedeutet.",
+            "Quero entender o que essa história significa para mim."
+          ]
+        ],
+        "new": [
+          [
+            "trust",
+            "Ich wünsche mir Nähe, aber Vertrauen fällt mir schwer.",
+            "Quero proximidade, mas tenho dificuldade de confiar."
+          ],
+          [
+            "repeat",
+            "Ich möchte alte Beziehungsmuster hinter mir lassen.",
+            "Quero deixar antigos padrões de relacionamento para trás."
+          ],
+          [
+            "open",
+            "Ich bin offen und neugierig auf das, was kommt.",
+            "Estou aberta e curiosa pelo que vem."
+          ],
+          [
+            "space",
+            "Ich möchte der Liebe wieder mehr Raum geben.",
+            "Quero dar mais espaço ao amor."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tension",
+      "title": "Welcher Gedanke beschäftigt dich am meisten?",
+      "pt": "Qual pensamento mais ocupa sua cabeça?",
+      "why": "Escolhe a tensão sem atribuir diagnóstico. F10, R03, R11, YouTube 6.",
+      "options": [
+        [
+          "intuition",
+          "Ist das mein Bauchgefühl — oder meine Unsicherheit?",
+          "É minha intuição ou minha insegurança?"
+        ],
+        [
+          "chosen",
+          "Ich möchte spüren, dass ich wirklich gewählt werde.",
+          "Quero sentir que sou realmente escolhida."
+        ],
+        [
+          "again",
+          "Werde ich mich noch einmal so verbunden fühlen?",
+          "Será que vou sentir uma conexão assim novamente?"
+        ],
+        [
+          "enough",
+          "Ich möchte mich so, wie ich bin, angenommen fühlen.",
+          "Quero me sentir aceita como sou."
+        ],
+        [
+          "curious",
+          "Keiner davon. Ich möchte mich einfach besser kennenlernen.",
+          "Nenhum desses. Só quero me conhecer melhor."
+        ]
+      ]
+    },
+    {
+      "id": "wish",
+      "title": "Was wünschst du dir für dein nächstes Kapitel in der Liebe?",
+      "pt": "O que você deseja para seu próximo capítulo no amor?",
+      "why": "Faz a transição da dor para o desejo. R02, R05, R12.",
+      "options": [
+        [
+          "home",
+          "Eine Liebe, die sich wie Zuhause anfühlt.",
+          "Um amor que pareça um lar."
+        ],
+        [
+          "mutual",
+          "Nähe, die von beiden Seiten kommt.",
+          "Proximidade que venha dos dois lados."
+        ],
+        [
+          "peace",
+          "Mehr Ruhe in meinem Herzen.",
+          "Mais paz no meu coração."
+        ],
+        [
+          "confidence",
+          "Mehr Vertrauen in mich und meine Entscheidungen.",
+          "Mais confiança em mim e nas minhas decisões."
+        ],
+        [
+          "light",
+          "Leichtigkeit und neue Möglichkeiten.",
+          "Leveza e novas possibilidades."
+        ]
+      ]
+    },
+    {
+      "id": "style",
+      "title": "Wie begegnest du spirituellen Deutungen?",
+      "pt": "Como você se relaciona com interpretações espirituais?",
+      "why": "Ajusta o tom, nunca a suposta precisão. R06, R08. É a primeira pergunta a retirar se causar abandono.",
+      "options": [
+        [
+          "mystic",
+          "Ich mag ihre Symbolik und spirituelle Tiefe.",
+          "Gosto do simbolismo e da profundidade espiritual."
+        ],
+        [
+          "open",
+          "Ich bin offen, auch wenn ich nicht alles glaube.",
+          "Estou aberta, mesmo sem acreditar em tudo."
+        ],
+        [
+          "simple",
+          "Ich bin neugierig und mag klare, einfache Erklärungen.",
+          "Sou curiosa e gosto de explicações claras e simples."
+        ]
+      ]
+    },
+    {
+      "id": "name",
+      "title": "Wie dürfen wir dich nennen?",
+      "pt": "Como podemos te chamar?",
+      "why": "Primeiro nome opcional; não aumenta a interpretação da mão.",
+      "placeholder": "Dein Vorname (optional)"
+    },
+    {
+      "id": "hand",
+      "title": "Welche Hand möchtest du fotografieren?",
+      "pt": "Qual mão você quer fotografar?",
+      "why": "Elimina confusão entre as mãos e garante legenda correta. F05–F07, YouTube 17–18.",
+      "options": [
+        [
+          "right",
+          "Meine rechte Hand.",
+          "Minha mão direita."
+        ],
+        [
+          "left",
+          "Meine linke Hand.",
+          "Minha mão esquerda."
+        ]
+      ]
+    }
+  ],
+  "branches": {
+    "connection": {
+      "title": "Nähe, die sich für dich stimmig anfühlt",
+      "pt": "Uma proximidade que faça sentido para você",
+      "intro": "Du möchtest eine bestimmte Verbindung besser verstehen. Dein Porträt greift deshalb auf, was dir in dieser Verbindung wichtig ist und welche Form von Nähe du dir wünschst.",
+      "chapter": "Deine Verbindung: Nähe, Erwartungen und Gegenseitigkeit",
+      "question": "Woran würdest du im Alltag erkennen, dass Nähe von beiden Seiten kommt?"
+    },
+    "closure": {
+      "title": "Ein neues Kapitel, in dem deine Geschichte Platz hat",
+      "pt": "Um novo capítulo em que sua história tem lugar",
+      "intro": "Du möchtest mit einer vergangenen Liebe Frieden schließen. Dein Porträt gibt dieser Geschichte Raum und richtet den Blick auf das, was du für dich mitnehmen oder hinter dir lassen möchtest.",
+      "chapter": "Dein Übergang: Erinnerungen, Abschied und neuer Raum",
+      "question": "Was möchtest du aus dieser Geschichte bewahren — und was nicht weitertragen?"
+    },
+    "new": {
+      "title": "Raum für eine Liebe, in der du du selbst sein kannst",
+      "pt": "Espaço para um amor em que você possa ser você mesma",
+      "intro": "Du möchtest dich für eine neue Liebe öffnen. Dein Porträt stellt deshalb deine Wünsche an Nähe, Vertrauen und einen neuen Anfang in den Mittelpunkt.",
+      "chapter": "Dein Neubeginn: Vertrauen, Wünsche und Möglichkeiten",
+      "question": "Welche kleine Erfahrung würde dir zeigen, dass du dich bei jemandem wohl und frei fühlst?"
+    }
+  },
+  "price": 34.9,
+  "expressFee": 9,
+  "standardHours": 24,
+  "expressHours": 1
+};
+let step=-1,answers={},photo='',express=false,busy=false,timer;const app=document.getElementById('app');
+const euro=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function opts(q){return q.branches?q.branches[answers.goal||'connection']:q.options||[]}
+function label(id){const q=D.questions.find(x=>x.id===id);return opts(q).find(o=>o[0]===answers[id])?.[1]||''}
+function note(t){return `<div class="notes">${t}</div>`}
+function expert(){return `<div class="expert"><div class="portrait"><svg viewBox="0 0 60 80" aria-label="Espaço para retrato"><circle cx="30" cy="24" r="16" fill="#a5b19a"/><path d="M4 78V65c0-30 52-30 52 0v13" fill="#a5b19a"/></svg></div><div><strong>Clara Falk</strong><br><small>Konzeptfigur · Porträt folgt</small><br><small>Identidade fictícia para aprovação criativa</small></div></div>`}
+function image(){return photo?`<img class="photo" src="${photo}" alt="Dein ausgewähltes Handfoto"><p class="fine">Dein Originalfoto · In dieser Demo nicht analysiert.</p>`:''}
+function map(){return `<div class="map"><svg viewBox="0 0 220 240" aria-label="Mapa esquemático, não extraído da foto"><path d="M73 222C53 179 33 166 26 143Q18 120 32 118Q41 117 57 140L45 62Q44 45 56 46Q65 46 68 64L77 106L74 30Q75 14 87 18Q95 19 96 35L102 101L105 24Q106 10 118 15Q126 17 125 34L123 104L138 45Q142 31 153 39Q159 42 155 58L145 119Q172 85 183 101Q189 108 175 130L158 166L144 225Z" fill="#e2ccae" stroke="#ad9b7f" stroke-width="2"/><path d="M68 123Q105 105 146 119" stroke="#9d5674" stroke-width="4" fill="none"/><path d="M69 145Q108 130 143 149" stroke="#6d8f85" stroke-width="4" fill="none"/><path d="M68 136Q111 158 95 205" stroke="#b4944f" stroke-width="4" fill="none"/></svg></div><p class="fine">Mapa ilustrativo. Não corresponde à foto enviada.</p>`}
+function render(){clearTimeout(timer);busy=false;let content='';
+if(step===-1){content=`<div class="eyebrow">Dein persönliches Herzlinien-Porträt</div><h1>Welche Geschichte möchtest du in deiner Herzlinie entdecken?</h1><p>Beantworte ein paar Fragen zu dem, was dich in der Liebe bewegt. Lade anschließend ein Foto deiner Hand hoch und entdecke deine persönliche Vorschau.</p>${expert()}<button class="cta" id="start">Mein Porträt beginnen →</button><p class="fine">Quiz und Vorschau kostenlos. Das vollständige Porträt ist kostenpflichtig.<br>Symbolische Handlesung zur Selbstreflexion.</p>${note('Entrada: “Que história você gostaria de descobrir na sua linha do coração?” · Nome e retrato da expert são conceitos. Preço e prazo expresso ainda são hipóteses.')}`}
+else if(step<D.questions.length){let q=D.questions[step];content=`<div class="eyebrow">Dein Porträt · Frage ${step+1} von ${D.questions.length}</div><div class="bar"><span style="width:${(step+1)/D.questions.length*100}%"></span></div><h1>${q.title}</h1>${note(q.pt+'<br><br>'+q.why)}${q.id==='name'?`<input id="name" type="text" maxlength="40" autocomplete="given-name" placeholder="${q.placeholder}" value="${esc(answers.name)}">`:`<div class="choices">${opts(q).map(([k,de,pt])=>`<button class="choice ${answers[q.id]===k?'selected':''}" data-answer="${k}" aria-pressed="${answers[q.id]===k}">${de}<span class="notes">${pt}</span></button>`).join('')}</div>`}<div class="nav"><button class="secondary" id="back">← Zurück</button><button class="cta" id="next" ${q.id!=='name'&&!answers[q.id]?'disabled':''}>${q.id==='name'?'Weiter / Ohne Namen weiter':'Weiter →'}</button></div>`}
+else if(step===7){content=`<div class="eyebrow">Dein Handfoto</div><h1>Jetzt bekommt dein Porträt deine persönliche Form.</h1><p>Fotografiere deine <strong>${answers.hand==='left'?'linke':'rechte'} Handfläche</strong> bei gleichmäßigem Licht. Halte die Hand entspannt und zeige die gesamte Handfläche. Die Linien sollten scharf zu erkennen sein.</p><div class="upload"><label for="upload">Foto aufnehmen oder auswählen</label><br><input id="upload" type="file" accept="image/jpeg,image/png,image/webp"><p class="fine">JPG, PNG oder WebP · maximal 10 MB</p></div><p id="error" role="alert"></p>${image()}${note('Foto fica local na memória da página. Não há detecção de mão ou nitidez. Produção precisa verificar qualidade e identificar apenas linhas observáveis.')}<div class="nav"><button class="secondary" id="back">← Zurück</button><button class="cta" id="analyze" ${!photo?'disabled':''}>Meine Vorschau vorbereiten</button></div>`}
+else if(step===8){content=`<div class="eyebrow">Demo-Ablauf · keine echte Analyse</div><h1>Deine persönliche Vorschau wird vorbereitet.</h1><div class="scan"></div><p id="status">Deine Antworten werden zusammengestellt.</p><p class="fine">Demonstração da transição. A foto não está sendo analisada.</p>${note('Em produção: verificar foto → marcar linhas observáveis → organizar respostas → preparar prévia. Não usar resultados inventados ou percentuais de compatibilidade.')}`}
+else if(step===9){let b=D.branches[answers.goal];content=`<div class="eyebrow">Deine persönliche Vorschau</div><h1>${answers.name?esc(answers.name)+', ':''}${b.title}.</h1><p>${b.intro}</p><div class="card"><div class="eyebrow">Aus deinen Antworten</div><p><strong>Deine Situation:</strong> ${label('context')}</p><p><strong>Was dich bewegt:</strong> ${label('tension')}</p><p><strong>Was du dir wünschst:</strong> ${label('wish')}</p></div>${image()}<div class="card"><h3>Ein erster Impuls für dich</h3><p>${b.question}</p></div>${note('Esta prévia usa respostas reais do quiz. O texto não afirma que a foto revelou essas informações. O relatório completo inclui mapa somente quando a análise visual existir.')}<button class="cta" id="offer">Mein vollständiges Porträt entdecken →</button><div class="nav"><button class="secondary" id="edit">Antworten bearbeiten</button></div>`}
+else if(step===10){let b=D.branches[answers.goal];content=`<div class="eyebrow">Dein nächstes Kapitel</div><h1>Dein vollständiges Herzlinien-Porträt.</h1><p>Ein persönliches Gesamtbild aus deinem Handfoto, deiner Geschichte und deiner Frage an die Liebe.</p>${expert()}<div class="card"><h3>Das gehört zu deinem Porträt</h3><ul><li>Dein Handfoto mit markierten, erkennbaren Linien.</li><li>Eine verständliche symbolische Deutung.</li><li>${b.chapter}.</li><li>Drei Impulse für dein nächstes Kapitel in der Liebe.</li><li>Dein Porträt als PDF und vertonte Zusammenfassung.</li></ul><button class="secondary" id="sample">Beispiel der vollständigen Lieferung ansehen</button></div><div class="card"><div class="eyebrow">Standard · innerhalb von 24 Stunden</div><p class="price">${euro(D.price)}</p><label class="check"><input id="express" type="checkbox" ${express?'checked':''}><span><strong>Express hinzufügen: +${euro(D.expressFee)}</strong><br>Innerhalb von 1 Stunde.<br><small>Gleicher Inhalt. Schnellere Bereitstellung.</small></span></label><p>Dein Gesamtpreis: <strong id="total">${euro(D.price+(express?D.expressFee:0))}</strong></p><p class="fine">Einmalige Zahlung, kein Abonnement. Die Lieferzeit beginnt nach Zahlungseingang und sobald ein geeignetes Handfoto vorliegt.</p><button class="cta" id="checkout">Demo-Bestellung ansehen →</button><p class="fine">Preço e prazo expresso propostos para teste. Nenhuma cobrança.</p></div>${note('Padrão de 24h e adicional de €9: definidos pelo usuário. Base €34,90 e expresso até 1h: hipóteses. Mesma entrega nas duas opções.')}<details><summary>Was macht mein Porträt persönlich?</summary><p>Dein Foto, deine gewählte Frage und deine Antworten bestimmen die Darstellung und den Schwerpunkt deiner Deutung.</p></details><details><summary>Erfahre ich, was eine andere Person fühlt?</summary><p>Das Porträt greift deine Sicht auf die Verbindung auf. Die Gefühle anderer Menschen lassen sich daraus nicht feststellen.</p></details><details><summary>Wird das Porträt mit KI erstellt?</summary><p>Die geplante Ausarbeitung wird KI-gestützt erstellt. Dieser Prototyp verwendet keine KI und analysiert keine Fotos.</p></details><div class="nav"><button class="secondary" id="back">← Vorschau</button></div>`}
+else if(step===11){content=`<div class="eyebrow">Demo · keine Bestellung ausgelöst</div><h1>So sieht deine Bestellübersicht aus.</h1><div class="card"><p>Herzlinien-Porträt · ${esc(answers.name||'Dein persönliches Porträt')}</p><p>${express?'Express · innerhalb von 1 Stunde':'Standard · innerhalb von 24 Stunden'}</p><p class="price">${euro(D.price+(express?D.expressFee:0))}</p><p>PDF + vertonte Zusammenfassung.</p></div><p>No funil real, o checkout coleta o e-mail de entrega. Após o pagamento, a confirmação informa a hora limite e o canal de suporte.</p><p>Nenhuma foto foi enviada. Nenhum pedido foi criado.</p><div class="row"><button class="cta" id="sample">Ver exemplo da entrega</button><button class="secondary" id="offer">Voltar à oferta</button></div>`}
+else if(step===12){const b=D.branches[answers.goal];content=`<div class="eyebrow">Amostra editorial · produto ainda não produzido</div><h1>${answers.name?esc(answers.name)+': ':''}Dein Herzlinien-Porträt</h1><p>${b.title}.</p><div class="two"><div>${image()}</div><div>${map()}</div></div><div class="card"><h3>1. Deine Geschichte</h3><p>${b.intro}</p><p>Du hast angegeben: „${label('context')}“</p><h3>2. Dein persönlicher Schwerpunkt</h3><p>Dein Wunsch: „${label('wish')}“</p><p>${b.question}</p><h3>3. Deine Handlinien</h3><p>Na entrega real, este bloco traz descrição visual verificada, interpretação simbólica e reflexão contextualizada. A maquete não inventa uma leitura para sua foto.</p><h3>4. Dein nächstes Kapitel</h3><p>Notiere eine kleine Veränderung, mit der du deinem Wunsch mehr Raum geben möchtest.</p></div><p class="fine">Escopo proposto: PDF 8–12 páginas + áudio 5–8 minutos. Esta tela é uma amostra parcial da estrutura. Áudio e análise visual não estão implementados.</p><button class="cta" id="offer">Zurück zum Angebot</button>`}
+app.innerHTML=content;window.scrollTo(0,0);wire();if(step===8){busy=true;timer=setTimeout(()=>{step=9;render()},1800)}}
+function go(n){step=n;render()}
+function on(id,event,fn){let el=document.getElementById(id);if(el)el.addEventListener(event,fn)}
+function wire(){on('start','click',()=>go(0));on('back','click',()=>go(step-1));on('next','click',()=>{if(step===5)answers.name=document.getElementById('name').value.trim();go(step+1)});document.querySelectorAll('[data-answer]').forEach(el=>el.onclick=()=>{let q=D.questions[step];if(q.id==='goal'&&answers.goal!==el.dataset.answer)delete answers.context;answers[q.id]=el.dataset.answer;render()});on('upload','change',e=>{let f=e.target.files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024){document.getElementById('error').textContent='Bitte JPG, PNG oder WebP bis 10 MB auswählen.';return}let candidate=URL.createObjectURL(f),im=new Image();im.onload=()=>{if(photo)URL.revokeObjectURL(photo);photo=candidate;render()};im.onerror=()=>{URL.revokeObjectURL(candidate);document.getElementById('error').textContent='Dieses Bild konnte nicht geöffnet werden. Bitte wähle ein anderes Foto.'};im.src=candidate});on('analyze','click',()=>go(8));on('offer','click',()=>go(10));on('edit','click',()=>go(0));on('express','change',e=>{express=e.target.checked;document.getElementById('total').textContent=euro(D.price+(express?D.expressFee:0))});on('checkout','click',()=>go(11));on('sample','click',()=>go(12))}
+document.getElementById('notesButton').onclick=()=>{let shown=document.body.classList.toggle('show-notes');document.getElementById('notesButton').setAttribute('aria-pressed',String(shown))};document.getElementById('reset').onclick=()=>{clearTimeout(timer);if(photo)URL.revokeObjectURL(photo);photo='';answers={};express=false;go(-1)};render();
+</script></html>

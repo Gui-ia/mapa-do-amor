@@ -1,0 +1,767 @@
+{
+  "version": 3,
+  "price": 34.9,
+  "currency": "EUR",
+  "mode": "demo",
+  "defaultLanguage": "de",
+  "goals": [
+    {
+      "id": "new",
+      "text": {
+        "pt": "O amor que ainda pode chegar.",
+        "de": "Die Liebe, die noch in mein Leben kommen könnte."
+      }
+    },
+    {
+      "id": "past",
+      "text": {
+        "pt": "Uma pessoa do passado que ainda mexe comigo.",
+        "de": "Einen Menschen aus meiner Vergangenheit, der mich noch beschäftigt."
+      }
+    },
+    {
+      "id": "current",
+      "text": {
+        "pt": "A relação que vivo e o que vem pela frente.",
+        "de": "Meine heutige Beziehung und das, was vor uns liegt."
+      }
+    },
+    {
+      "id": "whole",
+      "text": {
+        "pt": "Minha trajetória inteira: passado, presente e futuro.",
+        "de": "Meinen ganzen Weg: Vergangenheit, Gegenwart und Zukunft."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "pt": "Qual parte da sua história de amor você quer explorar primeiro?",
+      "de": "Welchen Teil deiner Liebesgeschichte möchtest du zuerst erkunden?"
+    },
+    null,
+    {
+      "pt": "Qual pergunta você quer levar para sua leitura?",
+      "de": "Welche Frage möchtest du in deine Lesung mitnehmen?"
+    }
+  ],
+  "branches": {
+    "new": {
+      "question": {
+        "pt": "Como você descreveria este momento da sua vida amorosa?",
+        "de": "Wie würdest du dein Liebesleben im Moment beschreiben?"
+      },
+      "context": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Estou sem relacionamento e quero conhecer alguém.",
+            "de": "Ich bin Single und möchte jemanden kennenlernen."
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Estou recomeçando depois de uma relação.",
+            "de": "Ich starte nach einer Beziehung neu."
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Conheci alguém e quero explorar essa conexão.",
+            "de": "Ich habe jemanden kennengelernt und möchte diese Verbindung erkunden."
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Ainda não vivi uma relação que senti como um grande amor.",
+            "de": "Ich habe noch keine Beziehung erlebt, die sich für mich wie die große Liebe angefühlt hat."
+          }
+        },
+        {
+          "id": "4",
+          "text": {
+            "pt": "Nenhuma dessas opções descreve meu momento.",
+            "de": "Keine dieser Antworten beschreibt meine Situation."
+          }
+        }
+      ],
+      "curiosity": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Que possibilidades a leitura aponta para um novo amor?",
+            "de": "Welche Möglichkeiten für eine neue Liebe zeigt die Deutung auf?"
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Como meu próximo capítulo pode ser diferente do que já vivi?",
+            "de": "Wie könnte sich mein nächstes Kapitel von früheren Erfahrungen unterscheiden?"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Que lugar o amor ocupa nesta fase da minha vida?",
+            "de": "Welchen Platz hat die Liebe in meiner jetzigen Lebensphase?"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Quero explorar o mapa sem uma pergunta específica.",
+            "de": "Ich möchte die Liebeslandkarte ohne eine bestimmte Frage erkunden."
+          }
+        }
+      ],
+      "heading": {
+        "pt": "Seu mapa começa pelo amor que ainda pode chegar.",
+        "de": "Deine Liebeslandkarte beginnt mit dem Blick auf eine mögliche neue Liebe."
+      },
+      "chapter": {
+        "pt": "O amor que ainda pode chegar.",
+        "de": "Eine neue Liebe, die in dein Leben kommen könnte."
+      }
+    },
+    "past": {
+      "question": {
+        "pt": "O que faz você voltar a essa história?",
+        "de": "Was führt deine Gedanken immer wieder zu dieser Geschichte zurück?"
+      },
+      "context": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "A conexão foi forte, mesmo depois do fim.",
+            "de": "Die Verbindung war stark und beschäftigt mich noch nach dem Ende."
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Ficou a sensação de que faltou viver alguma coisa.",
+            "de": "Ich habe das Gefühl, dass etwas zwischen uns offen geblieben ist."
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Quero entender o lugar desse encontro na minha trajetória.",
+            "de": "Ich möchte verstehen, welchen Platz diese Begegnung in meiner Geschichte hat."
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Quero olhar para o futuro sem apagar o que vivi.",
+            "de": "Ich möchte nach vorne schauen, ohne meine Geschichte auszublenden."
+          }
+        },
+        {
+          "id": "4",
+          "text": {
+            "pt": "É uma curiosidade, não uma história mal resolvida.",
+            "de": "Ich bin einfach neugierig; für mich ist nichts ungeklärt."
+          }
+        }
+      ],
+      "curiosity": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "O que essa história representa na leitura da minha trajetória?",
+            "de": "Welche Bedeutung hat diese Geschichte in der Deutung meines Weges?"
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Que possibilidades aparecem quando olho além desse encontro?",
+            "de": "Welche Möglichkeiten zeigt die Deutung jenseits dieser Begegnung auf?"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Como passado e futuro se conectam no meu mapa?",
+            "de": "Wie verbinden sich Vergangenheit und Zukunft in meiner Liebeslandkarte?"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Quero explorar o mapa sem uma pergunta específica.",
+            "de": "Ich möchte die Liebeslandkarte ohne eine bestimmte Frage erkunden."
+          }
+        }
+      ],
+      "heading": {
+        "pt": "Essa história tem um lugar no seu mapa. O futuro também.",
+        "de": "Diese Geschichte hat einen Platz in deiner Liebeslandkarte. Deine Zukunft auch."
+      },
+      "chapter": {
+        "pt": "O lugar dessa história e o olhar para o que vem depois.",
+        "de": "Der Platz dieser Geschichte und der Blick auf das, was danach kommt."
+      }
+    },
+    "current": {
+      "question": {
+        "pt": "Como está a conexão entre vocês hoje?",
+        "de": "Wie fühlt sich eure Verbindung heute an?"
+      },
+      "context": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Estamos bem e tenho curiosidade sobre o próximo capítulo.",
+            "de": "Uns geht es gut, und ich bin neugierig auf unser nächstes Kapitel."
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Estamos nos conhecendo.",
+            "de": "Wir lernen uns gerade kennen."
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Estamos passando por mudanças.",
+            "de": "Wir erleben gerade Veränderungen."
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Tenho dúvidas sobre a continuidade dessa história.",
+            "de": "Ich frage mich, wie es mit uns weitergeht."
+          }
+        },
+        {
+          "id": "4",
+          "text": {
+            "pt": "Nenhuma dessas opções descreve nossa relação.",
+            "de": "Keine dieser Antworten beschreibt unsere Beziehung."
+          }
+        }
+      ],
+      "curiosity": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Que temas a leitura traz para o próximo capítulo dessa relação?",
+            "de": "Welche Themen zeigt die Deutung für das nächste Kapitel dieser Beziehung auf?"
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Como essa conexão se encaixa na minha trajetória?",
+            "de": "Wie fügt sich diese Verbindung in meinen bisherigen Weg ein?"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "O que a leitura sugere sobre mudanças nesta fase?",
+            "de": "Was legt die Deutung über Veränderungen in dieser Lebensphase nahe?"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Quero explorar o mapa sem uma pergunta específica.",
+            "de": "Ich möchte die Liebeslandkarte ohne eine bestimmte Frage erkunden."
+          }
+        }
+      ],
+      "heading": {
+        "pt": "A história de vocês faz parte de um caminho maior.",
+        "de": "Eure Geschichte ist Teil eines größeren Weges."
+      },
+      "chapter": {
+        "pt": "Sua conexão atual e os próximos capítulos.",
+        "de": "Deine heutige Verbindung und eure nächsten Kapitel."
+      }
+    },
+    "whole": {
+      "question": {
+        "pt": "Ao olhar para sua história até aqui, o que mais se destaca?",
+        "de": "Was fällt dir am meisten auf, wenn du auf deine bisherige Liebesgeschichte blickst?"
+      },
+      "context": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Um encontro que mudou muita coisa.",
+            "de": "Eine Begegnung, die vieles verändert hat."
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "Diferentes amores em diferentes momentos.",
+            "de": "Verschiedene Lieben in verschiedenen Lebensphasen."
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Um período longo sem relacionamento.",
+            "de": "Eine längere Zeit ohne Beziehung."
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "A sensação de que ainda tenho muito para viver.",
+            "de": "Das Gefühl, dass noch viel vor mir liegt."
+          }
+        },
+        {
+          "id": "4",
+          "text": {
+            "pt": "Prefiro explorar sem escolher uma dessas opções.",
+            "de": "Ich möchte mich nicht festlegen und offen erkunden."
+          }
+        }
+      ],
+      "curiosity": [
+        {
+          "id": "0",
+          "text": {
+            "pt": "Que fio conecta os diferentes capítulos da minha vida amorosa?",
+            "de": "Was verbindet die verschiedenen Kapitel meiner Liebesgeschichte?"
+          }
+        },
+        {
+          "id": "1",
+          "text": {
+            "pt": "O que a leitura sugere para o amor que ainda posso viver?",
+            "de": "Was legt die Deutung über die Liebe nahe, die noch vor mir liegen könnte?"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "pt": "Como os encontros anteriores se relacionam com meu momento atual?",
+            "de": "Wie hängen frühere Begegnungen mit meiner heutigen Situation zusammen?"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "pt": "Quero explorar o mapa sem uma pergunta específica.",
+            "de": "Ich möchte die Liebeslandkarte ohne eine bestimmte Frage erkunden."
+          }
+        }
+      ],
+      "heading": {
+        "pt": "Seu passado, seu presente e os próximos capítulos.",
+        "de": "Deine Vergangenheit, deine Gegenwart und deine nächsten Kapitel."
+      },
+      "chapter": {
+        "pt": "Os encontros, mudanças e possibilidades ao longo do seu caminho.",
+        "de": "Begegnungen, Veränderungen und Möglichkeiten auf deinem Weg."
+      }
+    }
+  },
+  "copy": {
+    "product": {
+      "pt": "Seu Mapa do Amor",
+      "de": "Deine persönliche Liebeslandkarte"
+    },
+    "headline": {
+      "pt": "O grande amor da sua vida já cruzou seu caminho — ou essa história ainda está por começar?",
+      "de": "Ist dir die große Liebe schon begegnet — oder liegt diese Geschichte noch vor dir?"
+    },
+    "lead": {
+      "pt": "Explore o que a leitura das linhas da sua mão sugere sobre sua trajetória amorosa: os encontros que marcaram sua vida, as conexões do presente e as possibilidades de um novo capítulo no amor.",
+      "de": "Entdecke, was die Deutung deiner Handlinien über deinen Weg in der Liebe nahelegt: prägende Begegnungen, deine heutige Verbindung und Möglichkeiten für ein neues Kapitel."
+    },
+    "sublead": {
+      "pt": "Sua história em uma linha do tempo pessoal, com marcações na sua foto e explicações para cada parte.",
+      "de": "Deine Liebesgeschichte als persönliche Landkarte — mit Markierungen auf deinem Handfoto und einer Erklärung zu jedem Abschnitt."
+    },
+    "start": {
+      "pt": "Começar meu Mapa do Amor",
+      "de": "Meine Liebeslandkarte beginnen"
+    },
+    "free": {
+      "pt": "Prévia gratuita. Mapa completo: 34,90 €.",
+      "de": "Kostenlose Vorschau. Vollständige Liebeslandkarte: 34,90 €."
+    },
+    "demo": {
+      "pt": "Versão de demonstração",
+      "de": "Demoversion"
+    },
+    "back": {
+      "pt": "Voltar",
+      "de": "Zurück"
+    },
+    "next": {
+      "pt": "Continuar",
+      "de": "Weiter"
+    },
+    "restart": {
+      "pt": "Recomeçar",
+      "de": "Neu beginnen"
+    },
+    "phaseQuestions": {
+      "pt": "Perguntas",
+      "de": "Fragen"
+    },
+    "phaseExample": {
+      "pt": "O mapa",
+      "de": "Die Karte"
+    },
+    "phasePhoto": {
+      "pt": "Sua foto",
+      "de": "Dein Foto"
+    },
+    "phasePreview": {
+      "pt": "Prévia",
+      "de": "Vorschau"
+    },
+    "questionNote": {
+      "pt": "Depois das perguntas, conheça o mapa e adicione sua foto.",
+      "de": "Nach den Fragen lernst du die Karte kennen und kannst dein Foto hinzufügen."
+    },
+    "exampleTitle": {
+      "pt": "Sua história, vista como um mapa.",
+      "de": "Deine Liebesgeschichte als Landkarte."
+    },
+    "exampleLead": {
+      "pt": "Uma linha marcada. Uma explicação ao lado. E uma leitura que percorre passado, presente e futuro.",
+      "de": "Eine markierte Linie. Eine Erklärung daneben. Und eine Lesung durch Vergangenheit, Gegenwart und Zukunft."
+    },
+    "exampleLabel": {
+      "pt": "Conheça um exemplo do Mapa do Amor",
+      "de": "So sieht eine Liebeslandkarte aus"
+    },
+    "exampleAlt": {
+      "pt": "Mão ilustrativa com três linhas douradas; a linha superior está relacionada à legenda A.",
+      "de": "Illustrative Hand mit drei goldenen Linien; die obere Linie gehört zur Erläuterung A."
+    },
+    "lineTitle": {
+      "pt": "A · A linha destacada",
+      "de": "A · Die hervorgehobene Linie"
+    },
+    "lineObservation": {
+      "pt": "A linha dourada superior atravessa a palma abaixo dos dedos.",
+      "de": "Die obere goldene Linie verläuft unterhalb der Finger quer über die Handfläche."
+    },
+    "sampleTitle": {
+      "pt": "Como uma explicação se conecta à história",
+      "de": "Wie eine Erklärung mit der Geschichte verbunden wird"
+    },
+    "sampleText": {
+      "pt": "Exemplo de texto: “Um encontro pode ocupar um lugar importante na sua história sem definir todos os capítulos que vêm depois. Nesta leitura, o tema é a passagem entre guardar o significado do que viveu e dar espaço a novas conexões.”",
+      "de": "Textbeispiel: „Eine Begegnung kann einen wichtigen Platz in deiner Geschichte haben, ohne alle folgenden Kapitel festzulegen. In dieser Lesung geht es darum, die Bedeutung des Erlebten zu bewahren und zugleich Raum für neue Verbindungen zu lassen.“"
+    },
+    "sampleNote": {
+      "pt": "Imagem de exemplo.",
+      "de": "Beispielansicht."
+    },
+    "mechanism": {
+      "pt": "As linhas da sua mão entram na leitura. Suas respostas mostram qual história você quer explorar.",
+      "de": "Deine Handlinien fließen in die Lesung ein. Deine Antworten zeigen, welche Geschichte du erkunden möchtest."
+    },
+    "addPhoto": {
+      "pt": "Adicionar minha foto",
+      "de": "Mein Handfoto hinzufügen"
+    },
+    "photoTitle": {
+      "pt": "Agora, vamos trazer sua mão para o mapa.",
+      "de": "Jetzt kommt deine Hand ins Bild."
+    },
+    "photoLead": {
+      "pt": "Fotografe a palma inteira, com a mão relaxada e boa iluminação. Confira se as linhas aparecem nítidas.",
+      "de": "Fotografiere deine ganze Handfläche bei gutem Licht. Halte die Hand entspannt und achte darauf, dass die Linien deutlich zu erkennen sind."
+    },
+    "photoLocal": {
+      "pt": "Nesta demonstração, a foto é opcional e fica somente no seu navegador. Não há envio nem leitura automática.",
+      "de": "In dieser Demo ist das Foto optional und bleibt nur in deinem Browser. Es wird weder hochgeladen noch automatisch gelesen."
+    },
+    "hand": {
+      "pt": "Qual mão está na foto?",
+      "de": "Welche Hand zeigt dein Foto?"
+    },
+    "right": {
+      "pt": "Direita",
+      "de": "Rechts"
+    },
+    "left": {
+      "pt": "Esquerda",
+      "de": "Links"
+    },
+    "name": {
+      "pt": "Seu primeiro nome, se quiser",
+      "de": "Dein Vorname, wenn du möchtest"
+    },
+    "choosePhoto": {
+      "pt": "Tirar ou escolher foto",
+      "de": "Foto aufnehmen oder auswählen"
+    },
+    "changePhoto": {
+      "pt": "Trocar foto",
+      "de": "Foto ändern"
+    },
+    "formats": {
+      "pt": "JPG, PNG ou WebP · até 10 MB",
+      "de": "JPG, PNG oder WebP · bis 10 MB"
+    },
+    "removePhoto": {
+      "pt": "Remover foto",
+      "de": "Foto entfernen"
+    },
+    "photoAlt": {
+      "pt": "Foto selecionada para a demonstração; sem análise.",
+      "de": "Ausgewähltes Foto für die Demo; ohne Analyse."
+    },
+    "photoError": {
+      "pt": "Escolha uma imagem JPG, PNG ou WebP de até 10 MB.",
+      "de": "Wähle bitte ein JPG-, PNG- oder WebP-Bild mit höchstens 10 MB."
+    },
+    "decodeError": {
+      "pt": "Não foi possível abrir esta imagem. Escolha outro arquivo.",
+      "de": "Dieses Bild konnte nicht geöffnet werden. Bitte wähle eine andere Datei."
+    },
+    "handError": {
+      "pt": "Selecione qual mão aparece na foto.",
+      "de": "Bitte wähle aus, welche Hand dein Foto zeigt."
+    },
+    "prepare": {
+      "pt": "Ver a prévia de demonstração",
+      "de": "Demo-Vorschau ansehen"
+    },
+    "previewIntro": {
+      "pt": "Você escolheu o foco da sua leitura. Abaixo, veja como ele aparece na apresentação do mapa. O trecho é um exemplo; sua foto ainda não foi analisada.",
+      "de": "Du hast den Schwerpunkt deiner Lesung gewählt. Unten siehst du, wie er in der Karte dargestellt wird. Der Ausschnitt ist ein Beispiel; dein Foto wurde noch nicht analysiert."
+    },
+    "yourQuestion": {
+      "pt": "A pergunta que você escolheu",
+      "de": "Deine gewählte Frage"
+    },
+    "wholeMap": {
+      "pt": "Um trecho abre a leitura. O mapa completo conecta os três capítulos.",
+      "de": "Ein Ausschnitt eröffnet die Lesung. Die vollständige Karte verbindet alle drei Kapitel."
+    },
+    "offerCta": {
+      "pt": "Ver o mapa completo e o que está incluído",
+      "de": "Vollständige Liebeslandkarte und Inhalt ansehen"
+    },
+    "edit": {
+      "pt": "Editar minhas respostas",
+      "de": "Meine Antworten ändern"
+    },
+    "offerTitle": {
+      "pt": "Veja sua história de amor por inteiro — com espaço para o que ainda pode vir.",
+      "de": "Sieh deine Liebesgeschichte als Ganzes — mit Raum für das, was noch kommen kann."
+    },
+    "offerLead": {
+      "pt": "Seu Mapa do Amor conecta a leitura da sua mão à pergunta que você trouxe. Cada marcação vem acompanhada de uma explicação, e a leitura se organiza em passado, presente e futuro.",
+      "de": "Deine Liebeslandkarte verbindet die Deutung deiner Hand mit der Frage, die du mitgebracht hast. Jede Markierung wird erklärt. Die Lesung führt durch Vergangenheit, Gegenwart und Zukunft."
+    },
+    "priceLabel": {
+      "pt": "Seu Mapa do Amor completo",
+      "de": "Deine vollständige Liebeslandkarte"
+    },
+    "oneTime": {
+      "pt": "Pagamento único. PDF e áudio incluídos.",
+      "de": "Einmalige Zahlung. PDF und Audio inklusive."
+    },
+    "delivery": {
+      "pt": "Entrega prevista: até 24 horas após pagamento e recebimento de foto adequada.",
+      "de": "Geplante Bereitstellung: innerhalb von 24 Stunden nach Zahlung und Eingang eines geeigneten Fotos."
+    },
+    "notLive": {
+      "pt": "As compras ainda não estão disponíveis nesta demonstração.",
+      "de": "Käufe sind in dieser Demo noch nicht verfügbar."
+    },
+    "summaryCta": {
+      "pt": "Ver o resumo do meu mapa",
+      "de": "Zusammenfassung meiner Liebeslandkarte ansehen"
+    },
+    "summaryTitle": {
+      "pt": "Seu Mapa do Amor, em detalhes.",
+      "de": "Deine Liebeslandkarte im Überblick."
+    },
+    "total": {
+      "pt": "Total proposto",
+      "de": "Geplanter Gesamtpreis"
+    },
+    "summaryNotice": {
+      "pt": "Demonstração concluída. Nenhum pedido foi feito, nenhum pagamento foi cobrado e nenhum arquivo será enviado.",
+      "de": "Demo abgeschlossen. Es wurde keine Bestellung aufgegeben, kein Betrag berechnet und es wird keine Datei versendet."
+    },
+    "change": {
+      "pt": "Voltar ao meu mapa",
+      "de": "Zurück zu meiner Liebeslandkarte"
+    },
+    "privacy": {
+      "pt": "Sua foto e seus dados",
+      "de": "Dein Foto und deine Daten"
+    },
+    "privacyText": {
+      "pt": "As respostas, o nome e a foto ficam apenas na memória desta página. Não são enviados a um servidor nem salvos de forma permanente. Recarregar ou recomeçar apaga a sessão. Nenhum serviço de IA ou pagamento está conectado.",
+      "de": "Antworten, Name und Foto bleiben nur im Arbeitsspeicher dieser Seite. Sie werden weder an einen Server gesendet noch dauerhaft gespeichert. Neuladen oder Neustarten löscht die Sitzung. Es ist kein KI- oder Zahlungsdienst verbunden."
+    },
+    "guide": {
+      "pt": "Clara, sua guia nesta leitura",
+      "de": "Clara, deine Begleiterin bei dieser Lesung"
+    },
+    "guideText": {
+      "pt": "Clara te acompanha pelo seu Mapa do Amor, da primeira pergunta à apresentação da leitura.",
+      "de": "Clara begleitet dich durch deine Liebeslandkarte – von deiner ersten Frage bis zur Vorstellung der Lesung."
+    },
+    "futureNote": {
+      "pt": "Leitura de quiromancia sobre sua trajetória e possibilidades amorosas. Não determina datas, identidades ou decisões de outra pessoa.",
+      "de": "Eine Handlesung über deinen Weg und mögliche Entwicklungen in der Liebe. Sie bestimmt weder feste Termine noch Identitäten oder Entscheidungen anderer Menschen."
+    },
+    "bottomTitle": {
+      "pt": "Sua história não termina no capítulo que você já conhece.",
+      "de": "Deine Geschichte endet nicht mit dem Kapitel, das du schon kennst."
+    },
+    "included": {
+      "pt": "O que seu mapa reúne",
+      "de": "Was deine Liebeslandkarte verbindet"
+    },
+    "chapter": {
+      "pt": "Um capítulo para sua pergunta",
+      "de": "Ein Kapitel für deine Frage"
+    },
+    "review": {
+      "pt": "Idioma",
+      "de": "Sprache"
+    },
+    "guideDisclosure": {
+      "pt": "Clara é uma personagem virtual criada com IA.",
+      "de": "Clara ist eine mit KI erstellte virtuelle Figur."
+    }
+  },
+  "timeline": [
+    {
+      "key": "past",
+      "title": {
+        "pt": "Passado",
+        "de": "Vergangenheit"
+      },
+      "text": {
+        "pt": "Os encontros e experiências que você traz para a leitura.",
+        "de": "Die Begegnungen und Erfahrungen, die du in die Lesung einbringst."
+      }
+    },
+    {
+      "key": "present",
+      "title": {
+        "pt": "Presente",
+        "de": "Gegenwart"
+      },
+      "text": {
+        "pt": "Seu momento atual e a conexão que deseja explorar.",
+        "de": "Deine heutige Situation und die Verbindung, die du erkunden möchtest."
+      }
+    },
+    {
+      "key": "future",
+      "title": {
+        "pt": "Futuro",
+        "de": "Zukunft"
+      },
+      "text": {
+        "pt": "As possibilidades que a interpretação propõe para os próximos capítulos.",
+        "de": "Möglichkeiten, die die Deutung für deine nächsten Kapitel aufzeigt."
+      }
+    }
+  ],
+  "benefits": [
+    {
+      "title": {
+        "pt": "Seu mapa visual",
+        "de": "Deine Hand als persönliche Karte"
+      },
+      "text": {
+        "pt": "Sua própria foto com linhas identificadas e comentadas. Acompanhe a que parte da imagem cada interpretação se refere.",
+        "de": "Dein eigenes Foto mit erkennbaren, markierten und erläuterten Linien. So siehst du, worauf sich die jeweilige Deutung bezieht."
+      }
+    },
+    {
+      "title": {
+        "pt": "Sua trajetória em três capítulos",
+        "de": "Dein Weg in drei Kapiteln"
+      },
+      "text": {
+        "pt": "Uma leitura dos temas ligados à sua história, ao momento que vive e às possibilidades para o próximo capítulo amoroso.",
+        "de": "Eine Lesung zu deiner bisherigen Geschichte, deiner heutigen Situation und möglichen nächsten Kapiteln in der Liebe."
+      }
+    },
+    {
+      "title": {
+        "pt": "Sua leitura para guardar e ouvir",
+        "de": "Deine Lesung zum Aufbewahren und Anhören"
+      },
+      "text": {
+        "pt": "O mapa e a interpretação em PDF, acompanhados de um resumo em áudio para consultar quando quiser.",
+        "de": "Die Karte und ihre Deutung als PDF, ergänzt durch eine Audio-Zusammenfassung, die du jederzeit wieder anhören kannst."
+      }
+    }
+  ],
+  "faq": [
+    {
+      "q": {
+        "pt": "O que torna o mapa pessoal?",
+        "de": "Was macht die Karte persönlich?"
+      },
+      "a": {
+        "pt": "Na entrega planejada, sua foto fornece as linhas da leitura e suas respostas definem o contexto. Nesta demonstração, apenas as respostas mudam o foco; a leitura exibida é um exemplo.",
+        "de": "In der geplanten Lieferung liefert dein Foto die Linien der Lesung; deine Antworten bestimmen den Kontext. In dieser Demo ändern nur deine Antworten den Schwerpunkt. Die gezeigte Lesung ist ein Beispiel."
+      }
+    },
+    {
+      "q": {
+        "pt": "Por que responder perguntas se a leitura é da mão?",
+        "de": "Warum Fragen beantworten, wenn es eine Handlesung ist?"
+      },
+      "a": {
+        "pt": "A foto fornece as linhas para a leitura. Suas respostas mostram a situação e a pergunta que você quer explorar. O mapa reúne a interpretação da mão e o contexto que você trouxe.",
+        "de": "Dein Foto liefert die Linien für die Handlesung. Deine Antworten zeigen, welche Situation und welche Frage du erkunden möchtest. Die Liebeslandkarte verbindet beides."
+      }
+    },
+    {
+      "q": {
+        "pt": "Serve para quem está em um relacionamento?",
+        "de": "Passt das auch für Menschen in einer Beziehung?"
+      },
+      "a": {
+        "pt": "Sim. Seu próximo capítulo pode ser com a pessoa que já está ao seu lado. Escolha a relação atual no início para dar esse foco à sua leitura.",
+        "de": "Ja. Dein nächstes Kapitel kann mit dem Menschen beginnen, der bereits an deiner Seite ist. Wähle am Anfang deine heutige Beziehung als Schwerpunkt."
+      }
+    },
+    {
+      "q": {
+        "pt": "A leitura garante uma data ou quem será meu próximo amor?",
+        "de": "Garantiert die Lesung ein Datum oder meine nächste Liebe?"
+      },
+      "a": {
+        "pt": "Não. É uma leitura de quiromancia sobre sua trajetória e possibilidades amorosas. Não determina datas, identidades ou decisões de outra pessoa.",
+        "de": "Nein. Es ist eine Handlesung über deinen Weg und mögliche Entwicklungen in der Liebe. Sie bestimmt weder feste Termine noch Identitäten oder Entscheidungen anderer Menschen."
+      }
+    },
+    {
+      "q": {
+        "pt": "Como recebo o mapa completo?",
+        "de": "Wie erhalte ich die vollständige Karte?"
+      },
+      "a": {
+        "pt": "A entrega planejada inclui mapa visual, leitura em PDF e resumo em áudio. O envio e os pagamentos ainda não estão disponíveis nesta versão.",
+        "de": "Die geplante Lieferung umfasst das kommentierte Handfoto, die Lesung als PDF und die Audio-Zusammenfassung. Versand und Zahlungen sind in dieser Version noch nicht verfügbar."
+      }
+    }
+  ]
+}

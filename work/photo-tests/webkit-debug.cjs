@@ -1,0 +1,15 @@
+const {chromium,webkit,firefox}=require('playwright');const fs=require('fs');const assert=require('assert');
+(async()=>{const engine=process.env.ENGINE||'chromium';const browser=await ({chromium,webkit,firefox}[engine]).launch(engine==='chromium'?{channel:'chrome',headless:true}:{headless:true});
+for(const width of [360,390,768,1280]){
+const page=await browser.newPage({viewport:{width,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+const D=JSON.parse(fs.readFileSync('outputs/quiz-copy-data.json'));await page.addInitScript(state=>{if(!sessionStorage.getItem('test-seeded')){sessionStorage.setItem('test-seeded','1');sessionStorage.setItem('mapa-do-amor:session:v1',JSON.stringify({...state,version:1,savedAt:Date.now()}));}}, {stage:'photo',lang:'pt',a:{relationship:D.relationships[0].id,goal:D.goals[0].id,context:D.branches[D.goals[0].id].context[0].id,curiosity:D.branches[D.goals[0].id].curiosity[0].id,desire:D.desires[0].id},person:{name:'Teste',day:'1',month:'1',year:'1990',city:'São Paulo',hand:''}});await page.goto('http://127.0.0.1:18769/?lang=pt');
+await page.locator('.photo-mock').waitFor();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+await page.locator('#upload').setInputFiles({name:'bad.jpg',mimeType:'image/jpeg',buffer:Buffer.from('broken')});await page.waitForFunction(()=>document.querySelector('#error').textContent.includes('Não foi possível'));
+await page.locator('#upload').setInputFiles('outputs/assets/clara.png');await page.locator('.photo-preview').waitFor();assert(await page.locator('.photo-preview').evaluate(i=>i.complete&&i.naturalWidth>0));
+await page.locator('#step-form button[type=submit]').click();assert((await page.locator('#error').textContent()).length>0);
+await page.locator('input[name=hand][value=right]').check();await page.locator('#step-form button[type=submit]').click();await page.locator('dialog[open]').waitFor();await page.locator('[data-action=close-modal]').click();
+console.log('before',await page.evaluate(()=>window.MAPA_SESSION.load()));await page.reload();console.log('after',await page.evaluate(()=>window.MAPA_SESSION.load()),errors);await page.locator('.photo-preview').waitFor();await page.locator('[data-action=remove-photo]').click();await page.locator('.photo-mock').waitFor();
+await page.evaluate(()=>{window.MAPA_SESSION.putPhoto=async()=>false;Object.defineProperty(crypto,'randomUUID',{value:undefined,configurable:true});});await page.locator('#upload').setInputFiles('outputs/assets/clara.png');await page.locator('.photo-preview').waitFor();await page.locator('[data-action=remove-photo]').click();assert.equal(errors.length,0,errors.join('\n'));console.log('PASS',width,'layout, invalid file, upload, hand validation, modal, persistence, remove');
+if(width===390)await page.screenshot({path:'work/photo-tests/mobile.png',fullPage:true});await page.close();}
+const page=await browser.newPage();await page.goto('http://127.0.0.1:18769/?lang=pt');await page.evaluate(()=>{window.MAPA_SESSION.putPhoto=async()=>false;});
+await browser.close();})().catch(e=>{console.error(e);process.exit(1)});

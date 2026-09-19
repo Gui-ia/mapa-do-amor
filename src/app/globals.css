@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #171321;
+  --foreground: #f6e5ce;
+}
+
+body {
+  background-color: #120f1a;
+  color: #f6e5ce;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+/* Efeito de brilho místico sutil */
+.mystic-glow {
+  box-shadow: 0 0 40px -10px rgba(197, 160, 89, 0.25);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #dfc382 0%, #c5a059 50%, #e2b380 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rose-gradient-bg {
+  background: linear-gradient(135deg, #2a1f30 0%, #171321 100%);
+}
+
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #171321;
+}
+::-webkit-scrollbar-thumb {
+  background: #332b47;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a059;
+}
