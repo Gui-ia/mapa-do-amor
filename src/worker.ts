@@ -8,7 +8,7 @@ import {
 } from './lib/email';
 
 export interface Env {
-  ASSETS: Fetcher;
+  ASSETS: any;
   SUPABASE_URL?: string;
   SUPABASE_ANON_KEY?: string;
   SUPABASE_SERVICE_ROLE_KEY?: string;
@@ -139,21 +139,31 @@ function renderAppHtml(): string {
         background: #faf8f5 !important;
         border: 2px solid #c5a059 !important;
         border-radius: 16px !important;
-        padding: 16px !important;
-        margin: 14px auto !important;
+        padding: 18px !important;
+        margin: 16px auto !important;
         text-align: center !important;
         page-break-inside: avoid !important;
       }
-      .soulmate-seal-box * {
-        color: #1a1a1a !important;
+      .soulmate-seal-inner {
+        background: #ffffff !important;
+        border: 1.5px solid #c5a059 !important;
+        border-radius: 12px !important;
+        padding: 8px 24px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
-      
+      .seal-fleuron {
+        color: #855f1e !important;
+        -webkit-text-fill-color: #855f1e !important;
+        font-size: 20pt !important;
+      }
       #soulmateInitials {
         color: #855f1e !important;
         -webkit-text-fill-color: #855f1e !important;
-        font-size: 36pt !important;
+        font-size: 40pt !important;
         font-weight: 800 !important;
-        letter-spacing: 0.2em !important;
+        letter-spacing: 0.25em !important;
         display: inline-block !important;
         line-height: 1.1 !important;
         font-family: 'Cormorant Garamond', Georgia, serif !important;
@@ -165,7 +175,8 @@ function renderAppHtml(): string {
         color: #855f1e !important;
         -webkit-text-fill-color: #855f1e !important;
         font-weight: 600 !important;
-        padding: 3px 12px !important;
+        padding: 4px 14px !important;
+        border-radius: 20px !important;
         display: inline-block !important;
       }
 
@@ -517,14 +528,49 @@ function renderAppHtml(): string {
           type="button"
           onclick="checkIfReadingIsReady()"
           id="checkReadingBtn"
-          class="w-full bg-brand-gold hover:bg-brand-goldLight text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all text-xs sm:text-sm font-sans flex items-center justify-center gap-2"
+          class="w-full bg-brand-cardInner border border-brand-gold/40 hover:border-brand-gold text-[#dfc382] font-semibold py-3.5 px-6 rounded-xl shadow-md transition-all text-xs sm:text-sm font-sans flex items-center justify-center gap-2 cursor-pointer"
         >
-          <span>Acessar Meu Livro do Mapa do Amor</span>
-          <span>→</span>
+          <span>⏳ Em elaboração minuciosa por Clara (Fila Padrão • 24h)</span>
         </button>
-        <p class="text-[11px] text-center text-[#edd0ab]/50">
-          Você pode fechar esta página com tranquilidade. Seus dados estão salvos e você poderá retornar quando quiser.
-        </p>
+        <div class="flex items-center justify-between text-[11px] text-[#edd0ab]/50 pt-1">
+          <span>Seus dados foram salvos com segurança.</span>
+          <button type="button" onclick="checkIfReadingIsReady(true)" class="text-[#edd0ab]/40 hover:text-brand-goldLight underline">
+            Liberar agora (Modo Teste)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE FILA PADRÃO (CONVITE PARA FURAR FILA) -->
+    <div id="queueNoticeModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-brand-cardDark border-2 border-brand-gold rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-5 text-center shadow-2xl relative">
+        <button type="button" onclick="closeQueueNoticeModal()" class="absolute top-4 right-4 text-[#edd0ab]/60 hover:text-white text-lg">✕</button>
+        <div class="w-16 h-16 rounded-full bg-brand-gold/20 border border-brand-gold mx-auto flex items-center justify-center text-3xl">
+          ⏳
+        </div>
+        <div class="space-y-2">
+          <span class="inline-block px-3 py-0.5 rounded-full bg-brand-rose/40 text-brand-goldLight text-[11px] font-medium border border-brand-gold/30">
+            Fila Padrão de 24 Horas
+          </span>
+          <h3 class="font-serif text-xl sm:text-2xl text-[#f6e5ce]">Sua leitura está sendo escrita por Clara Falk</h3>
+          <p class="text-xs text-[#edd0ab]/85 leading-relaxed text-left">
+            A Clara examina pessoalmente cada curva da sua mão e o alinhamento de Vênus com máxima atenção. Seu protocolo está na <strong>fila normal de atendimento (prazo oficial de até 24 horas)</strong>.
+          </p>
+          <p class="text-xs text-[#edd0ab]/85 leading-relaxed text-left">
+            Assim que seu livro estiver finalizado, você receberá um e-mail com a liberação de acesso.
+          </p>
+        </div>
+        <div class="bg-brand-cardInner border-2 border-amber-400/50 p-4 rounded-2xl space-y-3">
+          <p class="text-xs text-amber-300 font-bold">
+            ⚡ Não quer esperar 24 horas? Fure a fila e receba seu Mapa com Prioridade Expressa em até 6 horas!
+          </p>
+          <a id="modalExpressCheckoutBtn" href="https://go.perfectpay.com.br/PPU38CQGAA3" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-[#171321] font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm shadow-lg shadow-amber-500/30 transition-all hover:brightness-110">
+            <span>⚡ Acelerar Meu Mapa por R$ 9,90</span> <span>→</span>
+          </a>
+        </div>
+        <button type="button" onclick="closeQueueNoticeModal()" class="text-xs text-[#edd0ab]/60 hover:text-white underline block mx-auto">
+          Continuar aguardando na fila padrão (até 24h)
+        </button>
       </div>
     </div>
 
@@ -587,12 +633,12 @@ function renderAppHtml(): string {
           </div>
           
           <div class="py-2 flex items-center justify-center">
-            <div class="inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-black/40 border border-brand-gold/40 shadow-inner">
-              <span class="text-brand-gold text-2xl mr-3 select-none">❧</span>
+            <div class="soulmate-seal-inner inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-black/40 border border-brand-gold/40 shadow-inner">
+              <span class="seal-fleuron text-brand-gold text-2xl mr-3 select-none">❧</span>
               <div id="soulmateInitials" class="font-serif text-5xl sm:text-6xl font-bold tracking-[0.2em] text-[#dfc382]">
                 L. M.
               </div>
-              <span class="text-brand-gold text-2xl ml-3 select-none">☙</span>
+              <span class="seal-fleuron text-brand-gold text-2xl ml-3 select-none">☙</span>
             </div>
           </div>
 
@@ -886,11 +932,8 @@ function renderAppHtml(): string {
           if (data && data.reading) {
             currentReading = data.reading;
             localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
-            const btn = document.getElementById('checkReadingBtn');
-            if (btn) {
-              btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
-              btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce';
-            }
+            const isPriority = Boolean(currentProtocol?.isPriorityExpress || (currentUser && currentUser.isPriorityExpress));
+            applyPriorityExpressUI(isPriority);
           }
         }).catch(err => console.warn('Retomada em background:', err));
       }
@@ -1113,12 +1156,8 @@ function renderAppHtml(): string {
           if (data && data.reading) {
             currentReading = data.reading;
             localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
-            // Atualiza botão na tela de protocolo
-            const btn = document.getElementById('checkReadingBtn');
-            if (btn) {
-              btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
-              btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce';
-            }
+            const isPriority = Boolean(currentProtocol?.isPriorityExpress || (currentUser && currentUser.isPriorityExpress));
+            applyPriorityExpressUI(isPriority);
           }
         }).catch(err => console.warn('Processamento background:', err));
       } catch (e) {}
@@ -1126,25 +1165,51 @@ function renderAppHtml(): string {
 
     let waitingPollTimer = null;
 
+    function openStandardQueueModal() {
+      const m = document.getElementById('queueNoticeModal');
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeQueueNoticeModal() {
+      const m = document.getElementById('queueNoticeModal');
+      if (m) m.classList.add('hidden');
+    }
+
     function applyPriorityExpressUI(isPriority) {
       const upsellCard = document.getElementById('expressUpsellCard');
       const activeBadge = document.getElementById('expressActiveBadge');
       const deadlineTitle = document.getElementById('protocolDeadlineTitle');
       const previsaoText = document.getElementById('protocolPrevisaoText');
       const statusText = document.getElementById('protocolStatusText');
+      const btn = document.getElementById('checkReadingBtn');
 
       if (isPriority) {
         if (upsellCard) upsellCard.classList.add('hidden');
         if (activeBadge) activeBadge.classList.remove('hidden');
-        if (deadlineTitle) deadlineTitle.innerText = '⚡ Até 6 horas para conclusão (Fila Prioritária)';
-        if (previsaoText) previsaoText.innerHTML = '<span class="text-emerald-300 font-bold">⚡ Fila Prioritária (Até 6h)</span>';
-        if (statusText) statusText.innerHTML = '<span class="text-emerald-300 font-medium">⚡ No topo da mesa de Clara Falk</span>';
+        if (deadlineTitle) deadlineTitle.innerText = '⚡ Concluído com Prioridade Expressa (Até 6h)';
+        if (previsaoText) previsaoText.innerHTML = '<span class="text-emerald-300 font-bold">⚡ Fila Prioritária Express</span>';
+        if (statusText) statusText.innerHTML = '<span class="text-emerald-300 font-medium">⚡ Liberado no topo da mesa de Clara Falk</span>';
+
+        if (btn) {
+          if (currentReading) {
+            btn.innerHTML = '<span>✨ Prioridade Concluída! Acessar Seu Livro Agora</span> <span>→</span>';
+            btn.className = 'w-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl shadow-emerald-500/25 transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce cursor-pointer';
+          } else {
+            btn.innerHTML = '<span>⚡ Clara está finalizando seu dossiê prioritário...</span>';
+            btn.className = 'w-full bg-amber-500/20 border border-amber-400/60 text-amber-300 font-semibold py-3.5 px-6 rounded-xl text-xs sm:text-sm font-sans flex items-center justify-center gap-2 animate-pulse cursor-pointer';
+          }
+        }
       } else {
         if (upsellCard) upsellCard.classList.remove('hidden');
         if (activeBadge) activeBadge.classList.add('hidden');
         if (deadlineTitle) deadlineTitle.innerText = 'Até 24 horas para conclusão';
         if (previsaoText) previsaoText.innerText = 'Dentro do prazo de 24h';
-        if (statusText) statusText.innerText = '🟡 Em elaboração minuciosa por Clara';
+        if (statusText) statusText.innerText = '🟡 Na Fila Padrão de Clara Falk';
+
+        if (btn) {
+          btn.innerHTML = '<span>⏳ Em elaboração minuciosa por Clara (Fila Padrão • 24h)</span>';
+          btn.className = 'w-full bg-brand-cardInner border border-brand-gold/40 hover:border-brand-gold text-[#dfc382] font-semibold py-3.5 px-6 rounded-xl shadow-md transition-all text-xs sm:text-sm font-sans flex items-center justify-center gap-2 cursor-pointer';
+        }
       }
     }
 
@@ -1160,15 +1225,15 @@ function renderAppHtml(): string {
         checkoutLink.href = 'https://go.perfectpay.com.br/PPU38CQGAA3?email=' + encodeURIComponent(clientEmail) + '&name=' + encodeURIComponent(protocol.fullName || '');
       }
 
+      // Preenche também o link dentro do modal da fila padrão
+      const modalCheckout = document.getElementById('modalExpressCheckoutBtn');
+      if (modalCheckout) {
+        modalCheckout.href = 'https://go.perfectpay.com.br/PPU38CQGAA3?email=' + encodeURIComponent(clientEmail) + '&name=' + encodeURIComponent(protocol.fullName || '');
+      }
+
       // Aplica visual de prioridade caso já adquirido
       const isPriority = Boolean(protocol.isPriorityExpress || (currentUser && currentUser.isPriorityExpress));
       applyPriorityExpressUI(isPriority);
-
-      if (currentReading) {
-        const btn = document.getElementById('checkReadingBtn');
-        btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
-        btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2';
-      }
 
       switchView('waiting');
 
@@ -1191,23 +1256,27 @@ function renderAppHtml(): string {
             if (d && d.reading && !currentReading) {
               currentReading = d.reading;
               localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
-              const btn = document.getElementById('checkReadingBtn');
-              if (btn) {
-                btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
-                btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce';
-              }
+              applyPriorityExpressUI(Boolean(protocol.isPriorityExpress || (currentUser && currentUser.isPriorityExpress)));
             }
           } catch (e) {}
         }, 8000);
       }
     }
 
-    function checkIfReadingIsReady() {
-      if (currentReading) {
-        localStorage.setItem('mapa_view_reading', 'true');
-        renderCompletedReading(currentReading);
+    function checkIfReadingIsReady(forceUnlock = false) {
+      const isPriority = Boolean(currentProtocol?.isPriorityExpress || (currentUser && currentUser.isPriorityExpress));
+      const userEmail = (currentUser?.email || (currentProtocol ? currentProtocol.email : '') || '').toLowerCase();
+      const isTester = userEmail.includes('oguiillhermesantos') || userEmail.includes('teste');
+
+      if (forceUnlock || isPriority || isTester) {
+        if (currentReading) {
+          localStorage.setItem('mapa_view_reading', 'true');
+          renderCompletedReading(currentReading);
+        } else {
+          alert('✦ Clara Falk está dando os toques finais no seu livro prioritário. Por favor, aguarde alguns instantes!');
+        }
       } else {
-        alert('Seu livro está sendo elaborado e escrito pessoalmente por Clara Falk dentro do prazo de 24 horas. Você receberá um aviso por e-mail assim que estiver pronto!');
+        openStandardQueueModal();
       }
     }
 
@@ -1410,7 +1479,7 @@ function renderAppHtml(): string {
 // WORKER FETCH DISPATCHER
 // --------------------------------------------------------------------------
 export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: any): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
 
@@ -1452,18 +1521,7 @@ export default {
             cpf: payload?.customer?.identification_number || null,
             updated_at: new Date().toISOString(),
           };
-          if (isPriorityExpress) {
-            profileData.is_priority_express = true;
-          }
           await supabase.from('profiles').upsert(profileData, { onConflict: 'email' });
-
-          if (isPriorityExpress) {
-            try {
-              await supabase.from('readings')
-                .update({ is_priority_express: true })
-                .ilike('customer_email', email);
-            } catch (rUpdateErr) {}
-          }
         } catch (profErr) {
           console.warn('[Supabase Profiles Webhook Error]:', profErr);
         }
@@ -1548,27 +1606,21 @@ export default {
           try {
             const { data: userOrders } = await supabase
               .from('orders')
-              .select('transaction_code, raw_payload')
+              .select('transaction_code, sale_amount, raw_payload')
               .ilike('customer_email', email)
               .eq('status', 'approved');
 
             if (Array.isArray(userOrders)) {
-              isPriorityExpress = userOrders.some(o =>
-                String(o.transaction_code).includes('PPU38CQGAA3') ||
-                JSON.stringify(o.raw_payload || {}).includes('PPU38CQGAA3') ||
-                JSON.stringify(o.raw_payload || {}).toLowerCase().includes('6 horas') ||
-                JSON.stringify(o.raw_payload || {}).toLowerCase().includes('prioridade')
-              );
-            }
-
-            const { data: profCheck } = await supabase
-              .from('profiles')
-              .select('is_priority_express')
-              .ilike('email', email)
-              .maybeSingle();
-
-            if (profCheck && (profCheck as any).is_priority_express) {
-              isPriorityExpress = true;
+              isPriorityExpress = userOrders.some(o => {
+                const code = String(o.transaction_code || '');
+                const amt = Number(o.sale_amount || 0);
+                const raw = JSON.stringify(o.raw_payload || {});
+                return code.includes('PPU38CQGAA3') ||
+                       (amt >= 9.0 && amt <= 15.0) ||
+                       raw.includes('PPU38CQGAA3') ||
+                       raw.toLowerCase().includes('6 horas') ||
+                       raw.toLowerCase().includes('prioridade');
+              });
             }
           } catch (pCheckErr) {
             console.warn('[Priority Check Error]:', pCheckErr);
@@ -1807,9 +1859,36 @@ ESTRUTURA EXCLUSIVA EM JSON:
         }
 
         const reportData = JSON.parse(completionText || '{}');
-
-        // Dispara e-mail de Mapa Revelado se e-mail fornecido
+        const supabase = getSupabase(env);
         const userEmail = body.email;
+        const cleanEmail = userEmail ? userEmail.trim().toLowerCase() : null;
+
+        // Verifica se este pedido já tem prioridade expressa comprada
+        let isUserPriority = false;
+        if (cleanEmail) {
+          try {
+            const { data: pOrders } = await supabase
+              .from('orders')
+              .select('transaction_code, sale_amount, raw_payload')
+              .ilike('customer_email', cleanEmail)
+              .eq('status', 'approved');
+            if (Array.isArray(pOrders)) {
+              isUserPriority = pOrders.some(o => {
+                const code = String(o.transaction_code || '');
+                const amt = Number(o.sale_amount || 0);
+                const raw = JSON.stringify(o.raw_payload || {});
+                return code.includes('PPU38CQGAA3') ||
+                       (amt >= 9.0 && amt <= 15.0) ||
+                       raw.includes('PPU38CQGAA3') ||
+                       raw.toLowerCase().includes('6 horas') ||
+                       raw.toLowerCase().includes('prioridade');
+              });
+            }
+          } catch (e) {}
+        }
+        if (reportData.meta) {
+          reportData.meta.isPriorityExpress = isUserPriority;
+        }
         if (userEmail) {
           const readingTpl = getReadingCompletedEmailHtml({
             clientName,
@@ -1831,9 +1910,7 @@ ESTRUTURA EXCLUSIVA EM JSON:
         }
 
         // Persistir Perfil e Leitura no Supabase
-        const supabase = getSupabase(env);
         let customerId: string | null = null;
-        const cleanEmail = userEmail ? userEmail.trim().toLowerCase() : null;
 
         if (cleanEmail) {
           try {
