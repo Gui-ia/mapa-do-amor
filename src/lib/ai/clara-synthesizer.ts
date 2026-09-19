@@ -37,7 +37,7 @@ export async function synthesizeLoveMap(
 Você é conhecida pelo seu olhar sensível, respeitoso e profundamente esclarecedor sobre a trajetória amorosa de cada pessoa.
 Seu trabalho combina o mapeamento simbólico das linhas da mão (quiromancia) com a sabedoria dos ciclos astrológicos.
 
-Você recebeu os laudos dos seus dois especialistas:
+Você realizou a análise aprofundada da palma e do alinhamento astrológico de ${clientName}:
 [LAUDO DE QUIROMANCIA DAS LINHAS DA MÃO]:
 - Linha do Coração: ${palmistry.heartLine.description} | Estilo: ${palmistry.heartLine.style} | Significado: ${palmistry.heartLine.style}: ${palmistry.heartLine.meaning}
 - Linha da Cabeça: ${palmistry.headLine.meaning}

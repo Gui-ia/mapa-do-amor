@@ -18,10 +18,10 @@ export default function ClaraWaitingScreen({ readingId, clientName }: ClaraWaiti
 
   const steps = [
     { title: 'Conectando à Clara Falk', desc: 'Iniciando a acolhida da sua energia e dados de nascimento' },
-    { title: 'Mapeamento Quiromântico', desc: 'Especialista em quiromancia analisando a Linha do Coração e Monte de Vênus' },
-    { title: 'Alinhamento Astrológico', desc: 'Calculando a influência cósmica de Vênus e seus arquétipos afetivos' },
+    { title: 'Mapeamento Quiromântico', desc: 'Clara analisando a Linha do Coração e o Monte de Vênus na sua palma' },
+    { title: 'Alinhamento Astrológico', desc: 'Calculando a regência de Vênus e seus arquétipos afetivos' },
     { title: 'Redação do Mapa do Amor', desc: 'Clara Falk escrevendo a síntese da sua bússola do amor' },
-    { title: 'Diagramação do Livro em PDF', desc: 'Gerando o documento oficial diagramado para download e leitura' },
+    { title: 'Diagramação do Livro em PDF', desc: 'Finalizando seu documento oficial diagramado para leitura' },
   ];
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function ClaraWaitingScreen({ readingId, clientName }: ClaraWaiti
         } else if (data?.reading?.status === 'failed') {
           clearInterval(checkInterval);
           clearInterval(stepInterval);
-          setErrorMessage('Houve uma oscilação na conexão dos especialistas. Vamos tentar novamente.');
+          setErrorMessage('Houve uma oscilação temporária no processamento. Vamos tentar novamente.');
         }
       } catch (err) {
         console.error('Polling error:', err);
@@ -101,7 +101,7 @@ export default function ClaraWaitingScreen({ readingId, clientName }: ClaraWaiti
         </div>
         <div className="absolute -bottom-2 right-1/2 translate-x-1/2 bg-[#8e4b5d] text-white text-[11px] font-medium px-3 py-0.5 rounded-full border border-[#c5a059]/40 flex items-center gap-1 shadow-lg whitespace-nowrap">
           <Sparkles className="w-3 h-3 text-[#dfc382]" />
-          <span>Clara Falk & Equipe</span>
+          <span>Clara Falk</span>
         </div>
       </div>
 
@@ -112,7 +112,7 @@ export default function ClaraWaitingScreen({ readingId, clientName }: ClaraWaiti
       <p className="text-xs sm:text-sm text-[#edd0ab]/70 max-w-md mx-auto mb-8">
         {isCompleted
           ? 'Todas as análises foram concluídas e seu documento oficial está disponível.'
-          : 'A Clara e os especialistas estão analisando as linhas da sua palma e seus aspectos astrais. Isso leva de 1 a 2 minutos.'}
+          : 'A Clara está analisando pessoalmente as linhas da sua palma e seus aspectos astrais.'}
       </p>
 
       {/* Lista de Etapas */}

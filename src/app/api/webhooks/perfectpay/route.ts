@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase/admin';
+import { sendTransactionalEmail, getPurchaseApprovedEmailHtml } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
   try {
@@ -116,6 +117,26 @@ export async function POST(req: NextRequest) {
 
     if (orderError) {
       console.error('[Webhook PerfectPay] Erro ao salvar pedido na tabela orders:', orderError);
+    }
+
+    // 4. Dispara e-mail transacional de Compra Aprovada & Acesso Liberado
+    try {
+      const emailTemplate = getPurchaseApprovedEmailHtml({
+        clientName: fullName,
+        clientEmail: email,
+        orderCode: code,
+        saleAmount: typeof sale_amount === 'number' ? sale_amount : parseFloat(sale_amount || '0'),
+        accessUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://lecturalunar.com/app',
+      });
+
+      await sendTransactionalEmail({
+        to: email,
+        subject: emailTemplate.subject,
+        html: emailTemplate.html,
+        text: emailTemplate.text,
+      });
+    } catch (emailErr) {
+      console.error('[Webhook PerfectPay] Erro ao disparar e-mail de compra aprovada:', emailErr);
     }
 
     console.log(`[Webhook PerfectPay] Sucesso! Pedido ${code} processado para ${email} (User ID: ${customerId})`);

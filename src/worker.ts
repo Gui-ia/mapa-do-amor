@@ -164,7 +164,7 @@ function renderAppHtml(): string {
           ✦ Coleta de Coordenadas Pessoais
         </span>
         <h2 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce]">Olá, <span id="onboardingUserName"></span>!</h2>
-        <p class="text-xs sm:text-sm text-[#edd0ab]/70">Para que a Clara e os especialistas entreguem seu Mapa do Amor pessoal, confirme seus dados cósmicos e a foto da sua palma.</p>
+        <p class="text-xs sm:text-sm text-[#edd0ab]/70">Para que eu possa elaborar pessoalmente o seu Mapa do Amor, confirme sua data de nascimento e tire uma foto da sua mão.</p>
       </div>
 
       <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" class="bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
@@ -191,7 +191,7 @@ function renderAppHtml(): string {
               Foto da Palma da Mão <span class="text-rose-400">*</span>
             </label>
             <p class="text-xs text-[#edd0ab]/70">
-              Para uma leitura precisa da Linha do Coração e de Vênus, posicione sua mão aberta em um local bem iluminado.
+              Para uma leitura precisa da sua Linha do Coração e de Vênus, posicione sua mão aberta em um local bem iluminado.
             </p>
           </div>
 
@@ -251,7 +251,7 @@ function renderAppHtml(): string {
             <div class="flex-1 space-y-2 text-center sm:text-left">
               <span class="text-xs font-semibold text-emerald-400">✓ Foto capturada com sucesso!</span>
               <p class="text-xs text-[#edd0ab]/75 leading-relaxed">
-                As linhas da palma estão nítidas e prontas para o envio à equipe da Clara Falk.
+                As linhas da sua palma estão nítidas e prontas para serem analisadas pessoalmente por Clara Falk.
               </p>
               <div class="flex items-center justify-center sm:justify-start gap-3 pt-1">
                 <button
@@ -275,7 +275,7 @@ function renderAppHtml(): string {
         </div>
 
         <button type="submit" id="onboardBtn" class="w-full bg-gradient-to-r from-brand-gold to-brand-rose hover:brightness-110 text-white font-bold py-4 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2">
-          <span>Entregar Dados para a Clara Falk</span>
+          <span>Entregar Meus Dados para Clara Falk</span>
           <span>→</span>
         </button>
       </form>
@@ -289,7 +289,7 @@ function renderAppHtml(): string {
             <img src="/clara-falk-retrato-v1.png" alt="Clara Falk" class="w-full h-full object-cover rounded-full" onerror="this.src='/clara-falk-9x16.png'">
           </div>
           <span class="absolute -bottom-2 right-1/2 translate-x-1/2 bg-brand-rose text-white text-[11px] px-3 py-0.5 rounded-full border border-brand-gold/40 shadow-md whitespace-nowrap">
-            Clara Falk & Especialistas
+            Clara Falk
           </span>
         </div>
 
@@ -299,7 +299,7 @@ function renderAppHtml(): string {
           </span>
           <h2 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce]">Sua leitura está sendo elaborada</h2>
           <p class="text-xs sm:text-sm text-[#edd0ab]/80 max-w-md mx-auto leading-relaxed">
-            Seus dados de nascimento e a foto da sua palma foram recebidos diretamente por Clara Falk e nossa equipe de especialistas em quiromancia e astrologia.
+            Seus dados de nascimento e a foto da sua palma foram recebidos diretamente por Clara Falk.
           </p>
         </div>
       </div>
@@ -318,7 +318,7 @@ function renderAppHtml(): string {
               Até 24 horas para conclusão
             </div>
             <p class="text-xs text-[#edd0ab]/80 leading-relaxed">
-              Diferente de respostas prontas de computador, cada traço da sua Linha do Coração e seus arquétipos cósmicos são estudados minuciosamente para produzir um dossiê denso, profundo e transformador.
+              A Clara analisa pessoalmente cada curva da sua Linha do Coração e seus aspectos astrológicos. Cada detalhe é estudado com atenção e carinho para produzir um livro denso, profundo e transformador para a sua vida amorosa.
             </p>
           </div>
         </div>
@@ -339,12 +339,12 @@ function renderAppHtml(): string {
         <div class="grid grid-cols-2 gap-2 text-[#edd0ab]/80">
           <div><span class="text-[#edd0ab]/50 block">Destinatária:</span> <strong id="protocolClientName" class="text-white"></strong></div>
           <div><span class="text-[#edd0ab]/50 block">E-mail de Contato:</span> <strong id="protocolEmail" class="text-white"></strong></div>
-          <div><span class="text-[#edd0ab]/50 block">Status:</span> <span class="text-amber-300 font-medium">🟡 Em elaboração minuciosa</span></div>
+          <div><span class="text-[#edd0ab]/50 block">Status:</span> <span class="text-amber-300 font-medium">🟡 Em elaboração minuciosa por Clara</span></div>
           <div><span class="text-[#edd0ab]/50 block">Previsão:</span> <span class="text-emerald-300 font-medium">Dentro do prazo de 24h</span></div>
         </div>
       </div>
 
-      <!-- Botão para checar se a IA concluiu em background ou ver leituras -->
+      <!-- Botão para checar se a Clara concluiu ou ver leituras -->
       <div class="space-y-3">
         <button
           type="button"
@@ -352,7 +352,7 @@ function renderAppHtml(): string {
           id="checkReadingBtn"
           class="w-full bg-brand-gold hover:bg-brand-goldLight text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all text-xs sm:text-sm font-sans flex items-center justify-center gap-2"
         >
-          <span>Acessar Dossiê do Mapa do Amor</span>
+          <span>Acessar Meu Livro do Mapa do Amor</span>
           <span>→</span>
         </button>
         <p class="text-[11px] text-center text-[#edd0ab]/50">
@@ -372,10 +372,10 @@ function renderAppHtml(): string {
           </div>
           <div class="flex-1 space-y-1.5">
             <span class="inline-block px-3 py-0.5 rounded-full bg-brand-rose/40 text-brand-goldLight text-[11px] font-medium border border-brand-gold/30">
-              ✦ Dossiê Completo Concluído & Encadernado
+              ✦ Livro Oficial Concluído & Encadernado por Clara Falk
             </span>
             <h1 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce]" id="reportClientName">Mapa do Amor</h1>
-            <p class="text-xs sm:text-sm text-[#edd0ab]/70" id="reportMetaInfo">Análise Aprofundada de Quiromancia Simbólica & Astrologia Venusiana</p>
+            <p class="text-xs sm:text-sm text-[#edd0ab]/70" id="reportMetaInfo">Leitura Pessoal de Linhas da Mão & Astrologia Venusiana por Clara Falk</p>
           </div>
         </div>
 
@@ -401,28 +401,159 @@ function renderAppHtml(): string {
         </div>
       </div>
 
-      <!-- Registro Fotográfico da Mão e Anatomia das Linhas -->
-      <div class="bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-8 print-card">
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-goldLight mb-4">Registro Oficial da Palma e Leitura dos Montes</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-          <div class="h-64 rounded-2xl overflow-hidden border border-brand-gold/40 bg-black/50">
-            <img id="readingHandImg" src="" alt="Palma analisada" class="w-full h-full object-cover">
+      <!-- 1. REVELAÇÃO CENTRAL DA ALMA GÊMEA (PROMETIDA NA VSL) -->
+      <div class="bg-gradient-to-br from-[#2a1727] via-brand-cardDark to-[#1a1528] border-2 border-brand-gold rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden print-card space-y-6">
+        <div class="text-center space-y-2">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-goldLight text-xs uppercase tracking-widest font-bold">
+            ✦ O Grande Encontro Revelado
+          </span>
+          <h2 class="font-serif text-2xl sm:text-4xl text-[#f6e5ce]">A Revelação da Sua Alma Gêmea</h2>
+          <p class="text-xs sm:text-sm text-[#edd0ab]/80 max-w-lg mx-auto">
+            A partir da análise da sua palma e do alinhamento venusiano, estas são as coordenadas sagradas sobre a pessoa destinada ao seu caminho:
+          </p>
+        </div>
+
+        <!-- Box das Iniciais da Alma Gêmea -->
+        <div class="bg-black/40 border-2 border-brand-gold/60 rounded-2xl p-6 text-center max-w-md mx-auto space-y-2 shadow-inner">
+          <span class="text-[11px] uppercase tracking-widest font-semibold text-brand-goldLight block">
+            Iniciais da Sua Alma Gêmea
+          </span>
+          <div id="soulmateInitials" class="font-serif text-4xl sm:text-5xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#edd0ab] via-brand-gold to-[#f6e5ce] py-1">
+            --
           </div>
-          <div class="space-y-3 text-xs sm:text-sm text-[#edd0ab]/85 leading-relaxed font-serif italic text-base">
-            <p class="text-[#dfc382]">
-              &ldquo;As bifurcações da sua Linha do Coração e o relevo do Monte de Vênus traçam a anatomia exata das suas defesas inconscientes e do seu anseio por um amor onde a reciprocidade seja natural, e não uma luta.&rdquo;
+          <span id="soulmateConnectionType" class="inline-block text-xs px-3 py-1 rounded-full bg-brand-rose/40 text-brand-goldLight border border-brand-gold/30">
+            Calculando conexão...
+          </span>
+        </div>
+
+        <!-- Detalhes do Encontro e Lugares -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 rounded-2xl space-y-1.5">
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
+              <span>📅</span> Previsão Temporal do Encontro
+            </span>
+            <p id="soulmateTimeline" class="text-[#edd0ab]/90 leading-relaxed"></p>
+          </div>
+          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 rounded-2xl space-y-1.5">
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
+              <span>📍</span> Lugares & Circunstâncias Prováveis
+            </span>
+            <p id="soulmateLocations" class="text-[#edd0ab]/90 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Descrição Física -->
+        <div class="bg-brand-cardInner/80 border border-brand-borderDark p-5 rounded-2xl space-y-2">
+          <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
+            <span>👤</span> Descrição Física & Presença
+          </span>
+          <p id="soulmatePhysical" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed italic font-serif"></p>
+        </div>
+
+        <!-- Análise Aprofundada da Alma Gêmea (>1000 palavras) -->
+        <div class="bg-brand-cardInner/60 border border-brand-borderDark p-6 sm:p-8 rounded-2xl space-y-3">
+          <span class="text-xs uppercase tracking-wider font-bold text-brand-goldLight block flex items-center gap-1.5">
+            <span>📜</span> Quem Ele É no Fundo da Alma: Perfil Psicológico & Fidelidade
+          </span>
+          <div id="soulmateInDepth" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed font-sans whitespace-pre-line text-justify space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- 2. REGISTRO DA PALMA E AS 3 LINHAS DA VSL -->
+      <div class="bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-8 print-card space-y-6">
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <div class="h-64 sm:h-72 w-full sm:w-1/2 rounded-2xl overflow-hidden border-2 border-brand-gold/40 bg-black/50 shrink-0">
+            <img id="readingHandImg" src="" alt="Foto da sua mão analisada por Clara Falk" class="w-full h-full object-cover">
+          </div>
+          <div class="w-full sm:w-1/2 space-y-3">
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-brand-goldLight block">
+              Registro Fotográfico Analisado
+            </span>
+            <h3 class="font-serif text-xl sm:text-2xl text-[#f6e5ce]">A Anatomia das Suas 3 Linhas</h3>
+            <p class="text-xs text-[#edd0ab]/80 leading-relaxed">
+              Examinei minuciosamente a foto que você enviou. Suas linhas registram onde você esteve, o que calou por amor e a direção sagrada do seu futuro.
             </p>
-            <p class="font-sans text-xs text-[#edd0ab]/65 not-italic">
-              As linhas de uma mão não representam sentenças imutáveis: revelam padrões emocionais cristalizados que agora você tem a oportunidade consciente de transformar.
-            </p>
+          </div>
+        </div>
+
+        <!-- Cards das 3 Linhas da VSL -->
+        <div class="grid grid-cols-1 gap-4 pt-2">
+          <!-- Linha 1: Linha de Cima (Coração) -->
+          <div class="bg-brand-cardInner border border-brand-borderDark rounded-2xl p-5 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-rose/40 text-brand-goldLight flex items-center justify-center text-xs font-bold border border-brand-gold/30">1</span>
+              <h4 class="font-serif text-base sm:text-lg text-[#f6e5ce]">Linha de Cima: O Coração & O Vínculo com o Passado</h4>
+            </div>
+            <p id="lineHeartText" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed"></p>
+          </div>
+
+          <!-- Linha 2: Linha do Meio (Cabeça) -->
+          <div class="bg-brand-cardInner border border-brand-borderDark rounded-2xl p-5 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-rose/40 text-brand-goldLight flex items-center justify-center text-xs font-bold border border-brand-gold/30">2</span>
+              <h4 class="font-serif text-base sm:text-lg text-[#f6e5ce]">Linha do Meio: A Cabeça, Crescimento & Bloqueios</h4>
+            </div>
+            <p id="lineHeadText" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed"></p>
+          </div>
+
+          <!-- Linha 3: Linha de Baixo (Vida) -->
+          <div class="bg-brand-cardInner border border-brand-borderDark rounded-2xl p-5 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-rose/40 text-brand-goldLight flex items-center justify-center text-xs font-bold border border-brand-gold/30">3</span>
+              <h4 class="font-serif text-base sm:text-lg text-[#f6e5ce]">Linha de Baixo: A Vida, Energia & Decisão</h4>
+            </div>
+            <p id="lineLifeText" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed"></p>
           </div>
         </div>
       </div>
 
-      <!-- Capítulos Extensos e Densos -->
+      <!-- 3. CAPÍTULOS EXTENSOS E DENSOS -->
       <div id="readingChapters" class="space-y-8"></div>
 
-      <!-- Bússola Afetiva Diária -->
+      <!-- 4. BÔNUS 1: ANIMAL ESPIRITUAL GUIA NO AMOR (PROMETIDO NA VSL) -->
+      <div class="bg-gradient-to-br from-[#1e2337] to-brand-cardDark border-2 border-indigo-400/40 rounded-3xl p-6 sm:p-8 space-y-4 print-card">
+        <div class="flex items-center justify-between">
+          <span class="inline-block px-3 py-0.5 rounded-full bg-indigo-950 text-indigo-300 text-[11px] font-semibold uppercase tracking-wider border border-indigo-500/30">
+            🎁 Bônus 01 • Valor: R$ 27 (Incluso Grátis)
+          </span>
+        </div>
+        <h3 class="font-serif text-xl sm:text-2xl text-[#f6e5ce]">
+          Leitura do Seu Animal Espiritual Guia no Amor
+        </h3>
+        <div class="bg-black/40 border border-indigo-400/30 rounded-2xl p-4 flex items-center gap-4">
+          <span class="text-3xl">🦅</span>
+          <div>
+            <div class="text-xs text-indigo-300 font-bold uppercase tracking-wider">Seu Totem Sagrado:</div>
+            <div id="bonusAnimalName" class="font-serif text-lg text-white font-bold"></div>
+          </div>
+        </div>
+        <p id="bonusAnimalSymbolism" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed"></p>
+        <div class="bg-indigo-950/40 border border-indigo-800/40 rounded-xl p-4 text-xs text-indigo-200 leading-relaxed">
+          <strong class="block text-indigo-100 mb-1">Como usar essa força na sua vida amorosa:</strong>
+          <span id="bonusAnimalGuidance"></span>
+        </div>
+      </div>
+
+      <!-- 5. BÔNUS 2: LIMPEZA ENERGÉTICA DO CORAÇÃO (PROMETIDO NA VSL) -->
+      <div class="bg-gradient-to-br from-[#2a1f28] to-brand-cardDark border-2 border-rose-400/40 rounded-3xl p-6 sm:p-8 space-y-4 print-card">
+        <div class="flex items-center justify-between">
+          <span class="inline-block px-3 py-0.5 rounded-full bg-rose-950 text-rose-300 text-[11px] font-semibold uppercase tracking-wider border border-rose-500/30">
+            🎁 Bônus 02 • Valor: R$ 39 (Incluso Grátis)
+          </span>
+        </div>
+        <h3 class="font-serif text-xl sm:text-2xl text-[#f6e5ce]" id="bonusCleansingTitle">
+          Ritual de Limpeza Energética do Coração & Corte de Laços
+        </h3>
+        <p id="bonusCleansingChakra" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed italic font-serif"></p>
+        <div class="bg-brand-cardInner border border-rose-900/40 rounded-2xl p-5 space-y-2">
+          <div class="text-xs font-bold uppercase tracking-wider text-rose-300">
+            Passo a Passo Guiado por Clara Falk:
+          </div>
+          <div id="bonusCleansingSteps" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed font-sans whitespace-pre-line space-y-2"></div>
+        </div>
+      </div>
+
+      <!-- 6. BÚSSOLA AFETIVA DIÁRIA -->
       <div class="bg-gradient-to-br from-[#201b2e] to-[#2a1f30] border-2 border-brand-gold/60 rounded-3xl p-6 sm:p-8 space-y-4 print-card">
         <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-goldLight">
           <span>🧭 Sua Bússola Diária: Critérios Inegociáveis</span>
@@ -433,7 +564,7 @@ function renderAppHtml(): string {
         <ul id="readingTakeaways" class="space-y-3 pt-2 text-xs sm:text-sm text-[#edd0ab]/90"></ul>
       </div>
 
-      <!-- Carta Pessoal e Bênção de Clara Falk -->
+      <!-- 7. CARTA PESSOAL E BÊNÇÃO DE CLARA FALK -->
       <div class="bg-brand-cardDark border border-brand-gold/40 rounded-3xl p-6 sm:p-8 space-y-4 print-card">
         <div class="text-xs font-bold uppercase tracking-widest text-brand-rose">
           Mensagem Pessoal e Bênção de Clara Falk
@@ -517,10 +648,6 @@ function renderAppHtml(): string {
     // ==========================================
     // INICIALIZAÇÃO E PERSISTÊNCIA NO F5
     // ==========================================
-    window.addEventListener('DOMContentLoaded', () => {
-      initAppSession();
-    });
-
     function initAppSession() {
       // 1. Tenta recuperar usuário salvo no localStorage
       const savedUserStr = localStorage.getItem('mapa_user');
@@ -548,8 +675,35 @@ function renderAppHtml(): string {
 
       // Atualiza os botões do header
       if (currentUser) {
-        document.getElementById('navLeiturasBtn').classList.remove('hidden');
-        document.getElementById('logoutBtn').classList.remove('hidden');
+        const navBtn = document.getElementById('navLeiturasBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (navBtn) navBtn.classList.remove('hidden');
+        if (logoutBtn) logoutBtn.classList.remove('hidden');
+      }
+
+      // Se há protocolo aguardando e ainda não recebeu a leitura pronta, retoma processamento
+      if (currentProtocol && !currentReading) {
+        fetch('/api/readings/process', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientName: currentProtocol.fullName,
+            birthDate: currentProtocol.birthDate,
+            birthTime: currentProtocol.birthTime,
+            email: currentProtocol.email,
+            handPhotoUrl: currentProtocol.handPhotoUrl
+          })
+        }).then(res => res.json()).then(data => {
+          if (data && data.reading) {
+            currentReading = data.reading;
+            localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
+            const btn = document.getElementById('checkReadingBtn');
+            if (btn) {
+              btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
+              btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce';
+            }
+          }
+        }).catch(err => console.warn('Retomada em background:', err));
       }
 
       // Decide qual tela exibir sem voltar para login após F5
@@ -558,12 +712,20 @@ function renderAppHtml(): string {
       } else if (currentProtocol) {
         showWaitingProtocol(currentProtocol);
       } else if (currentUser) {
-        document.getElementById('onboardingUserName').innerText = currentUser.fullName.split(' ')[0];
-        document.getElementById('obFullName').value = currentUser.fullName;
+        const obName = document.getElementById('onboardingUserName');
+        const obFull = document.getElementById('obFullName');
+        if (obName) obName.innerText = (currentUser.fullName || 'Você').split(' ')[0];
+        if (obFull) obFull.value = currentUser.fullName || '';
         switchView('onboarding');
       } else {
         switchView('login');
       }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAppSession);
+    } else {
+      initAppSession();
     }
 
     function handleLogoClick() {
@@ -775,7 +937,7 @@ function renderAppHtml(): string {
       if (currentReading) {
         renderCompletedReading(currentReading);
       } else {
-        alert('Seu dossiê está em elaboração detalhada pela Clara Falk e os especialistas dentro do prazo de 24 horas. Você receberá um aviso por e-mail assim que estiver pronto!');
+        alert('Seu livro está sendo elaborado e escrito pessoalmente por Clara Falk dentro do prazo de 24 horas. Você receberá um aviso por e-mail assim que estiver pronto!');
       }
     }
 
@@ -791,6 +953,24 @@ function renderAppHtml(): string {
       document.getElementById('reportMetaInfo').innerText = 'Signo: ' + (rep.meta?.sunSign || '') + ' • Arquétipo: ' + (rep.meta?.archetype || '') + ' • Emitido em ' + (rep.meta?.generatedAt || '');
       document.getElementById('readingHandImg').src = reading.hand_photo_url || (currentProtocol ? currentProtocol.handPhotoUrl : '');
 
+      // 1. Preenche a Revelação da Alma Gêmea
+      if (rep.soulmateReveal) {
+        document.getElementById('soulmateInitials').innerText = rep.soulmateReveal.initials || 'A. M.';
+        document.getElementById('soulmateConnectionType').innerText = '✨ ' + (rep.soulmateReveal.connectionType || 'Conexão Destinada');
+        document.getElementById('soulmateTimeline').innerText = rep.soulmateReveal.timeline || '';
+        document.getElementById('soulmateLocations').innerText = rep.soulmateReveal.probableLocations || '';
+        document.getElementById('soulmatePhysical').innerText = '“' + (rep.soulmateReveal.physicalDescription || '') + '”';
+        document.getElementById('soulmateInDepth').innerText = rep.soulmateReveal.inDepthProfile || '';
+      }
+
+      // 2. Preenche as 3 Linhas da Mão (VSL)
+      if (rep.palmistryLines) {
+        document.getElementById('lineHeartText').innerText = rep.palmistryLines.heartLine?.meaning || '';
+        document.getElementById('lineHeadText').innerText = rep.palmistryLines.headLine?.meaning || '';
+        document.getElementById('lineLifeText').innerText = rep.palmistryLines.lifeLine?.meaning || '';
+      }
+
+      // 3. Preenche os Capítulos
       const chDiv = document.getElementById('readingChapters');
       chDiv.innerHTML = '';
 
@@ -807,6 +987,22 @@ function renderAppHtml(): string {
         chDiv.appendChild(card);
       });
 
+      // 4. Preenche os 2 Bônus da VSL
+      if (rep.bonusSpiritualAnimal) {
+        document.getElementById('bonusAnimalName').innerText = rep.bonusSpiritualAnimal.animalName || 'Totem Guia';
+        document.getElementById('bonusAnimalSymbolism').innerText = rep.bonusSpiritualAnimal.symbolism || '';
+        document.getElementById('bonusAnimalGuidance').innerText = rep.bonusSpiritualAnimal.guidanceForLove || '';
+      }
+
+      if (rep.bonusHeartCleansing) {
+        if (rep.bonusHeartCleansing.title) {
+          document.getElementById('bonusCleansingTitle').innerText = rep.bonusHeartCleansing.title;
+        }
+        document.getElementById('bonusCleansingChakra').innerText = '“' + (rep.bonusHeartCleansing.chakraInsight || '') + '”';
+        document.getElementById('bonusCleansingSteps').innerText = rep.bonusHeartCleansing.cleansingRitualSteps || '';
+      }
+
+      // 5. Preenche a Bússola Diária
       const tkList = document.getElementById('readingTakeaways');
       tkList.innerHTML = '';
       (rep.summaryKeyTakeaways || []).forEach(tk => {
@@ -816,10 +1012,15 @@ function renderAppHtml(): string {
         tkList.appendChild(li);
       });
 
+      // 6. Mensagem de Clara Falk
       document.getElementById('readingClaraMsg').innerText = '“' + (rep.claraPersonalMessage || '') + '”';
 
       switchView('leituras');
-      confetti({ particleCount: 80, spread: 70, colors: ['#c5a059', '#dfc382', '#8e4b5d', '#ffffff'] });
+      try {
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 80, spread: 70, colors: ['#c5a059', '#dfc382', '#8e4b5d', '#ffffff'] });
+        }
+      } catch (e) {}
     }
 
     function triggerDownloadPdf() {
@@ -1009,24 +1210,64 @@ export default {
 
         const openai = getOpenAI(env);
 
-        // Prompt enriquecido para geração de dossiê longo, denso e profundo
+        // Multimodal User Message: envia a foto da mão para o GPT-4o Vision examinar as linhas reais
+        const userContent: any[] = [
+          {
+            type: 'text',
+            text: `Por favor, Clara Falk, examine pessoalmente a foto da palma da mão enviada e os dados de nascimento de ${clientName} (Data de Nascimento: ${birthDate}${birthTime ? `, Horário de Nascimento: ${birthTime}` : ''}). Escreva o Dossiê Completo do Mapa do Amor cumprindo com máxima precisão todos os entregáveis prometidos na sua leitura oficial.`,
+          },
+        ];
+
+        if (handPhotoUrl && (handPhotoUrl.startsWith('data:image') || handPhotoUrl.startsWith('http'))) {
+          userContent.push({
+            type: 'image_url',
+            image_url: {
+              url: handPhotoUrl,
+              detail: 'high',
+            },
+          });
+        }
+
+        // Prompt do GPT-4o estritamente alinhado com a VSL e voz em 1ª pessoa de Clara Falk
         const completion = await openai.chat.completions.create({
           model: 'gpt-4o',
           temperature: 0.75,
+          max_tokens: 4000,
           response_format: { type: 'json_object' },
           messages: [
             {
               role: 'system',
-              content: `Você é Clara Falk, criadora e guia acolhedora do "Mapa do Amor".
-Você é uma autoridade sênior em Quiromancia Simbólica, Psicologia Junguiana dos Relacionamentos e Astrologia Venusiana.
-Sua missão é gerar um DOSSIÊ PROFUNDO, DENSO, LONGO E TRANSFORMADOR para a cliente ${clientName} (Data de Nascimento: ${birthDate}${birthTime ? `, Horário: ${birthTime}` : ''}).
+              content: `Você é a própria Clara Falk, criadora, mentora e guia do "Mapa do Amor".
+Você é conhecida pelo seu olhar sensível, acolhedor e profundo sobre a trajetória amorosa das pessoas, interpretando as linhas das mãos combinadas à sabedoria astrológica de Vênus.
 
-DIRETRIZES CRÍTICAS DE REDAÇÃO (DENSIDADE MÁXIMA):
-- Não faça textos curtos, superficiais ou telegráficos. Escreva como uma autora de um livro editorial premiado.
-- Cada capítulo deve ter NO MÍNIMO 3 a 4 parágrafos substanciais, densos e minuciosos.
-- Explore com profundidade os sentimentos que a pessoa guarda no peito: a sensação de se doar demais e receber migalhas, o cansaço emocional de sustentar relações sozinha, a dificuldade de baixar a guarda após desilusões passadas, e o anseio legítimo por uma conexão com reciprocidade verdadeira e paz interior.
-- Conecte a análise da Linha do Coração (profundidade, curvatura em direção a Júpiter/Saturno, ramificações de doação e de proteção), a Linha da Cabeça (racionalização das dores) e o Monte de Vênus (vitalidade amorosa e sensualidade).
-- Integre o Signo Solar e a regência venusiana arquetípica.
+SUA MISSÃO:
+Escrever pessoalmente o DOSSIÊ COMPLETO E OFICIAL DO MAPA DO AMOR para ${clientName}.
+Você está examinando os dados de nascimento (${birthDate}${birthTime ? ` às ${birthTime}` : ''}) e a foto real da palma da mão dela.
+
+DIRETRIZES FUNDAMENTAIS DE VOZ E TOM:
+1. VOZ EXCLUSIVA EM 1ª PESSOA DO SINGULAR ("EU"):
+   - Fale sempre como a própria Clara Falk: "Quando abri a foto da sua palma...", "Eu observei com carinho cada traçado...", "Eu quero segurar suas mãos e te dizer...", "No meu olhar sobre o seu céu...".
+   - NUNCA use "nós", "nossa equipe", "especialistas", "laboratório" ou terceiros. O atendimento e a leitura são 100% PESSOAIS SEUS.
+2. ZERO TERMOS TÉCNICOS OU FRIOS:
+   - É RIGOROSAMENTE PROIBIDO mencionar "visão computacional", "inteligência artificial", "IA", "algoritmos", "processamento", "cálculo de dados" ou termos de software. O texto deve ser puramente humano, empático, místico, editorial e íntimo.
+3. ALINHAMENTO COM AS PROMESSAS DA VSL:
+   - Identifique as 3 Linhas Fundamentais:
+     * Linha de Cima (Coração): o vínculo com o passado, aquela pessoa que ainda parece inacabada, a dúvida se ela percebeu o que perdeu, se faz parte do futuro ou marcou o passado para preparar para outro amor.
+     * Linha do Meio (Cabeça): crescimento e bloqueios, conflito entre querer se entregar e se proteger de decepções passadas, medo de confiar, parar de aceitar migalhas e indecisão.
+     * Linha de Baixo (Vida): energia, mudanças e decisão. A passagem entre a força da lembrança e alguém novo que realmente oferece presença e compromisso de construir juntos.
+   - Revelação da Alma Gêmea:
+     * Iniciais da Alma Gêmea (destaque máximo, ex: "M. R.", "J. P.", "R. S.").
+     * Tipo de Conexão: "Reencontro Transformador do Passado" ou "Novo Encontro Cósmico".
+     * Previsão Temporal: datas/períodos aproximados e estações do ano.
+     * Lugares Prováveis: ambientes detalhados onde os caminhos vão se cruzar.
+     * Descrição Física: porte, tipo de olhar, sorriso, estilo e postura magnética.
+     * Perfil Aprofundado (>1.000 palavras): quem ele realmente é, se é fiel, honesto, romântico, qualidades, defeitos humanos, e como demonstra afeto no dia a dia.
+   - 2 Bônus Exclusivos Prometidos:
+     * Bônus 1 (Valor R$ 27): Leitura do Animal Espiritual Guia no Amor (qual criatura sagrada protege a intuição dela e como aplicar essa força).
+     * Bônus 2 (Valor R$ 39): Leitura e Ritual de Limpeza Energética do Coração e Desbloqueio (diagnóstico do chacra cardíaco e ritual prático passo a passo de corte de laços tóxicos do passado).
+   - 6 Capítulos Densos: com 3 a 4 parágrafos substanciais cada.
+   - Bússola Diária: 5 critérios de ouro inegociáveis.
+   - Carta Pessoal assinada com amor por Clara Falk.
 
 ESTRUTURA EXCLUSIVA EM JSON:
 {
@@ -1038,57 +1279,89 @@ ESTRUTURA EXCLUSIVA EM JSON:
     "sunSign": "Signo Solar calculado",
     "archetype": "Título poético do Arquétipo de Vênus"
   },
+  "soulmateReveal": {
+    "initials": "Iniciais da Alma Gêmea (ex: M. R.)",
+    "connectionType": "Novo Encontro Cósmico OU Reencontro do Passado",
+    "timeline": "Previsão detalhada de período e estação do encontro...",
+    "probableLocations": "Descrição de lugares e circunstâncias onde o encontro acontece...",
+    "physicalDescription": "Descrição física detalhada: altura, olhar, sorriso, presença...",
+    "inDepthProfile": "Texto longo com mais de 1.000 palavras descrevendo a personalidade, integridade, fidelidade, valores morais, qualidades, defeitos e como ele demonstra o amor no dia a dia..."
+  },
+  "palmistryLines": {
+    "heartLine": {
+      "name": "Linha do Coração (Linha de Cima)",
+      "meaning": "Análise minuciosa do vínculo com o passado, da pessoa que ainda parece inacabada e do anseio por reciprocidade..."
+    },
+    "headLine": {
+      "name": "Linha da Cabeça (Linha do Meio)",
+      "meaning": "Análise do crescimento, dos bloqueios protetores, do medo de passar pela mesma decepção e da capacidade de não mais aceitar migalhas..."
+    },
+    "lifeLine": {
+      "name": "Linha da Vida (Linha de Baixo)",
+      "meaning": "Análise da energia, vitalidade e capacidade de decisão entre a força da lembrança e a presença real de quem quer construir juntos..."
+    }
+  },
   "chapters": [
     {
       "chapterNumber": 1,
       "title": "O Portal do Seu Coração: Anatomia da Sua Trajetória Amorosa",
       "subtitle": "Um olhar compassivo sobre as cicatrizes, as entregas e onde sua alma está hoje",
-      "content": "Texto longo com 3 a 4 parágrafos densos abordando a história afetiva, as defesas que construiu e o momento atual..."
+      "content": "Texto longo com 3 a 4 parágrafos densos acolhendo a história de ${clientName}..."
     },
     {
       "chapterNumber": 2,
-      "title": "A Linguagem Secreta da Sua Palma: Laudo Quiromântico Aprofundado",
+      "title": "A Linguagem da Sua Palma: Laudo Quiromântico Integrado",
       "subtitle": "A Linha do Coração, a Linha da Cabeça e o Monte de Vênus decodificados",
-      "content": "Texto longo com 3 a 4 parágrafos densos analisando com precisão cirúrgica a forma como ama, onde se machuca e o que a palma revela sobre seu magnetismo..."
+      "content": "Texto longo com 3 a 4 parágrafos densos dissecando as linhas da foto da mão..."
     },
     {
       "chapterNumber": 3,
-      "title": "As Forças Invisíveis do Seu Céu: Arquétipos de Vênus e Sinastria",
+      "title": "As Forças do Seu Céu: Arquétipos de Vênus e Magnetismo",
       "subtitle": "O alinhamento astrológico que rege suas atrações e suas necessidades inegociáveis",
-      "content": "Texto longo com 3 a 4 parágrafos densos integrando a energia astrológica, elementos e necessidades de segurança emocional..."
+      "content": "Texto longo com 3 a 4 parágrafos densos integrando a energia venusiana..."
     },
     {
       "chapterNumber": 4,
       "title": "Desprogramação de Padrões: O Fim dos Ciclos Repetitivos",
       "subtitle": "O que você viveu no passado e tem a permissão sagrada de não mais repetir",
-      "content": "Texto longo com 3 a 4 parágrafos densos sobre romper o papel de salvadora, não implorar afeto e desarmar dinâmicas tóxicas..."
+      "content": "Texto longo com 3 a 4 parágrafos densos sobre romper o papel de salvadora..."
     },
     {
       "chapterNumber": 5,
       "title": "O Mapa da Sua Reciprocidade: Sua Bússola para o Futuro",
       "subtitle": "Como reconhecer e acolher uma relação madura, estável e que realmente vale a sua presença",
-      "content": "Texto longo com 3 a 4 parágrafos densos com orientações práticas para os primeiros 90 dias de novas relações e filtros saudáveis..."
+      "content": "Texto longo com 3 a 4 parágrafos densos com orientações práticas para os primeiros 90 dias..."
     },
     {
       "chapterNumber": 6,
-      "title": "O Ritual da Nova Conexão & Bênção Afetiva",
+      "title": "O Ritual da Nova Conexão & Bênção Afetiva de Clara",
       "subtitle": "Palavras finais para ancorar a certeza de que o amor verdadeiro combina com você",
-      "content": "Texto emocionante e poético conduzido por Clara Falk, selando a abertura de um novo ciclo de respeito e carinho mútuo..."
+      "content": "Texto emocionante e lírico conduzido por Clara Falk, selando a abertura do novo ciclo..."
     }
   ],
+  "bonusSpiritualAnimal": {
+    "animalName": "Nome do Animal Totem (Ex: A Loba Branca, O Cisne Sagrado, A Águia da Clareza)",
+    "symbolism": "Explicação poética e profunda do arquétipo deste animal...",
+    "guidanceForLove": "Como usar a força e a sabedoria deste animal para guiar suas escolhas e proteger seu coração no amor..."
+  },
+  "bonusHeartCleansing": {
+    "title": "Ritual de Limpeza Energética do Coração & Desbloqueio Afetivo",
+    "chakraInsight": "Diagnóstico sensível sobre o que ainda está retido no seu chacra cardíaco...",
+    "cleansingRitualSteps": "Passo a passo detalhado do ritual de corte de cordões energéticos e ancoragem do novo amor..."
+  },
   "summaryKeyTakeaways": [
-    "Critério 1: Síntese prática e direta para lembrar no dia a dia",
-    "Critério 2: Síntese sobre reciprocidade",
-    "Critério 3: Síntese sobre limites saudáveis",
-    "Critério 4: Síntese sobre o arquétipo",
-    "Critério 5: Síntese sobre o novo ciclo amoroso"
+    "Critério de Ouro: Síntese prática para lembrar no dia a dia",
+    "Filtro de Reciprocidade: Síntese inegociável sobre presença real e atitudes",
+    "Proteção Emocional: Limite sagrado para não voltar a aceitar migalhas",
+    "Potência Magnética: Como viver a melhor versão do seu arquétipo venusiano",
+    "O Novo Amor: O sinal claro de que você encontrou alguém à sua altura"
   ],
-  "claraPersonalMessage": "Carta íntima, pessoal e afetuosa de 2 parágrafos assinada calorosamente por Clara Falk."
+  "claraPersonalMessage": "Carta íntima, carinhosa, pessoal e emocionante de 3 parágrafos assinada com muito amor por Clara Falk."
 }`,
             },
             {
               role: 'user',
-              content: `Por favor, elabore o livro/dossiê completo e denso do Mapa do Amor para ${clientName}.`,
+              content: userContent,
             },
           ],
         });

@@ -119,7 +119,7 @@ export async function generateLoveMapPDF(
         .font('Times-Italic')
         .fontSize(12)
         .fillColor('#171321')
-        .text('Por Clara Falk & Especialistas em Quiromancia e Astrologia', { align: 'center' });
+        .text('Por Clara Falk', { align: 'center' });
 
       doc.moveDown(0.5);
       doc

@@ -107,7 +107,7 @@ async function runTest() {
   doc.moveDown(1);
   doc.font('Times-Roman').fontSize(11).fillColor('#6d422a').text(`Signo & Arquétipo: ${report.meta.sunSign} — ${report.meta.archetype}`, { align: 'center' });
   doc.moveDown(6);
-  doc.font('Times-Italic').fontSize(12).fillColor('#171321').text('Por Clara Falk & Especialistas em Quiromancia e Astrologia', { align: 'center' });
+  doc.font('Times-Italic').fontSize(12).fillColor('#171321').text('Por Clara Falk', { align: 'center' });
 
   for (const ch of report.chapters) {
     doc.addPage();

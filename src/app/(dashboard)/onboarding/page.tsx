@@ -117,7 +117,7 @@ export default function OnboardingPage() {
           </h1>
 
           <p className="text-xs sm:text-sm text-[#edd0ab]/70 max-w-lg mx-auto">
-            Para que a Clara e os especialistas entreguem seu Mapa do Amor pessoal com fidelidade, confirme suas coordenadas cósmicas e a imagem da sua mão.
+            Para que a Clara elabore pessoalmente o seu Mapa do Amor com máxima fidelidade, confirme suas coordenadas cósmicas e a imagem da sua mão.
           </p>
         </div>
 
