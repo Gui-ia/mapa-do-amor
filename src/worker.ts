@@ -713,7 +713,11 @@ function renderAppHtml(): string {
       }
 
       // Decide qual tela exibir sem voltar para login após F5
-      if (currentReading) {
+      const hasViewedReading = localStorage.getItem('mapa_view_reading') === 'true';
+
+      if (currentProtocol && !hasViewedReading) {
+        showWaitingProtocol(currentProtocol);
+      } else if (currentReading && hasViewedReading) {
         renderCompletedReading(currentReading);
       } else if (currentProtocol) {
         showWaitingProtocol(currentProtocol);
@@ -760,6 +764,7 @@ function renderAppHtml(): string {
       localStorage.removeItem('mapa_user');
       localStorage.removeItem('mapa_reading');
       localStorage.removeItem('mapa_protocol');
+      localStorage.removeItem('mapa_view_reading');
       currentUser = null;
       currentReading = null;
       currentProtocol = null;
@@ -941,6 +946,7 @@ function renderAppHtml(): string {
 
     function checkIfReadingIsReady() {
       if (currentReading) {
+        localStorage.setItem('mapa_view_reading', 'true');
         renderCompletedReading(currentReading);
       } else {
         alert('Seu livro está sendo elaborado e escrito pessoalmente por Clara Falk dentro do prazo de 24 horas. Você receberá um aviso por e-mail assim que estiver pronto!');
@@ -1149,6 +1155,20 @@ export default {
         const fullName = payload?.customer?.full_name?.trim() || 'Cliente Mapa do Amor';
         const supabase = getSupabase(env);
 
+        // 1. Salva ou atualiza na tabela profiles
+        try {
+          await supabase.from('profiles').upsert({
+            email,
+            full_name: fullName,
+            phone: payload?.customer?.phone_formated || null,
+            cpf: payload?.customer?.identification_number || null,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: 'email' });
+        } catch (profErr) {
+          console.warn('[Supabase Profiles Webhook Error]:', profErr);
+        }
+
+        // 2. Salva na tabela orders
         await supabase.from('orders').upsert({
           transaction_code: payload.code,
           customer_email: email,
@@ -1215,6 +1235,13 @@ export default {
           if (order && order.customer_name) {
             fullName = order.customer_name;
           }
+
+          // Salva ou atualiza perfil em profiles
+          await supabase.from('profiles').upsert({
+            email,
+            full_name: fullName,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: 'email' });
         } catch (dbErr) {
           console.warn('[Supabase DB] Usando fallback local:', dbErr);
         }
