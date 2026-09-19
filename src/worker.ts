@@ -78,16 +78,111 @@ function renderAppHtml(): string {
     body { background-color: #120f1a; color: #f6e5ce; font-family: 'Inter', sans-serif; min-height: 100vh; }
     .gold-text { background: linear-gradient(135deg, #dfc382 0%, #c5a059 50%, #e2b380 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     
-    /* Estilos para impressão / Download de PDF denso */
+    /* Estilos de Alta Qualidade Editorial para Impressão e PDF */
     @media print {
-      body { background: white !important; color: #111827 !important; }
-      header, footer, #userHeaderActions, #downloadPdfBtn, #printBtn, #cameraModal { display: none !important; }
-      .print-page-break { page-break-before: always; }
-      .print-card { border: 1px solid #d4af37 !important; background: white !important; color: #111827 !important; box-shadow: none !important; margin-bottom: 2rem !important; padding: 2rem !important; }
-      .print-card * { color: #1f2937 !important; -webkit-text-fill-color: initial !important; }
-      .print-card h1, .print-card h2, .print-card h3, .gold-text { color: #855f1e !important; -webkit-text-fill-color: #855f1e !important; }
-      #view-leituras { display: block !important; }
-      #view-login, #view-onboarding, #view-waiting { display: none !important; }
+      @page {
+        size: A4 portrait;
+        margin: 14mm 14mm 14mm 14mm;
+      }
+      *, *::before, *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+        font-family: 'Inter', -apple-system, sans-serif !important;
+        font-size: 10pt !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      header, footer, #userHeaderActions, #downloadPdfBtn, #printBtn, #cameraModal {
+        display: none !important;
+      }
+      
+      #view-leituras {
+        display: block !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #view-login, #view-onboarding, #view-waiting {
+        display: none !important;
+      }
+
+      /* Cartões em Formato de Páginas de Livro Nobre */
+      .print-card {
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+        border: 1.5px solid #c5a059 !important;
+        border-radius: 14px !important;
+        padding: 22px !important;
+        margin-bottom: 22px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .print-card * {
+        color: #222222 !important;
+        -webkit-text-fill-color: initial !important;
+      }
+
+      /* Títulos e Elementos em Ouro Nobre */
+      .gold-text, .print-card h1, .print-card h2, .print-card h3, .print-card h4 {
+        color: #855f1e !important;
+        -webkit-text-fill-color: #855f1e !important;
+        font-family: 'Cormorant Garamond', Georgia, serif !important;
+      }
+
+      /* Medalhão Real das Iniciais no PDF */
+      .soulmate-seal-box {
+        background: #faf8f5 !important;
+        border: 2px solid #c5a059 !important;
+        border-radius: 16px !important;
+        padding: 16px !important;
+        margin: 14px auto !important;
+        text-align: center !important;
+        page-break-inside: avoid !important;
+      }
+      .soulmate-seal-box * {
+        color: #1a1a1a !important;
+      }
+      
+      #soulmateInitials {
+        color: #855f1e !important;
+        -webkit-text-fill-color: #855f1e !important;
+        font-size: 36pt !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.2em !important;
+        display: inline-block !important;
+        line-height: 1.1 !important;
+        font-family: 'Cormorant Garamond', Georgia, serif !important;
+      }
+
+      #soulmateConnectionType {
+        background: #f4ecdf !important;
+        border: 1px solid #c5a059 !important;
+        color: #855f1e !important;
+        -webkit-text-fill-color: #855f1e !important;
+        font-weight: 600 !important;
+        padding: 3px 12px !important;
+        display: inline-block !important;
+      }
+
+      /* Quebras de Página Estratégicas */
+      .print-page-break {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+      .avoid-break {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      p {
+        orphans: 3 !important;
+        widows: 3 !important;
+      }
     }
   </style>
 </head>
@@ -416,54 +511,76 @@ function renderAppHtml(): string {
           </span>
           <h2 class="font-serif text-2xl sm:text-4xl text-[#f6e5ce]">A Revelação da Sua Alma Gêmea</h2>
           <p class="text-xs sm:text-sm text-[#edd0ab]/80 max-w-lg mx-auto">
-            A partir da análise da sua palma e do alinhamento venusiano, estas são as coordenadas sagradas sobre a pessoa destinada ao seu caminho:
+            A partir da análise minuciosa da sua palma e do alinhamento venusiano, estas são as coordenadas sagradas sobre a pessoa destinada ao seu caminho:
           </p>
         </div>
 
-        <!-- Box das Iniciais da Alma Gêmea -->
-        <div class="bg-black/40 border-2 border-brand-gold/60 rounded-2xl p-6 text-center max-w-md mx-auto space-y-2 shadow-inner">
-          <span class="text-[11px] uppercase tracking-widest font-semibold text-brand-goldLight block">
-            Iniciais da Sua Alma Gêmea
-          </span>
-          <div id="soulmateInitials" class="font-serif text-4xl sm:text-5xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#edd0ab] via-brand-gold to-[#f6e5ce] py-1">
-            --
+        <!-- Medalhão Real das Iniciais da Alma Gêmea -->
+        <div class="soulmate-seal-box border-2 border-brand-gold/80 bg-[#1e1427] rounded-3xl p-6 sm:p-8 text-center max-w-md mx-auto shadow-2xl space-y-3 relative">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-[11px] font-serif uppercase tracking-widest text-brand-goldLight font-semibold">
+            <span>✧</span> Iniciais da Sua Alma Gêmea <span>✧</span>
           </div>
-          <span id="soulmateConnectionType" class="inline-block text-xs px-3 py-1 rounded-full bg-brand-rose/40 text-brand-goldLight border border-brand-gold/30">
-            Calculando conexão...
-          </span>
+          
+          <div class="py-2 flex items-center justify-center">
+            <div class="inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-black/40 border border-brand-gold/40 shadow-inner">
+              <span class="text-brand-gold text-2xl mr-3 select-none">❧</span>
+              <div id="soulmateInitials" class="font-serif text-5xl sm:text-6xl font-bold tracking-[0.2em] text-[#dfc382]">
+                L. M.
+              </div>
+              <span class="text-brand-gold text-2xl ml-3 select-none">☙</span>
+            </div>
+          </div>
+
+          <div>
+            <span id="soulmateConnectionType" class="inline-block text-xs sm:text-sm px-4 py-1.5 rounded-full bg-brand-rose/40 text-brand-goldLight border border-brand-gold/30 font-serif italic font-medium">
+              Conexão Cósmica
+            </span>
+          </div>
+
+          <p class="text-[11px] text-[#edd0ab]/70 max-w-xs mx-auto">
+            Decodificado a partir do cruzamento da Linha do Coração e da regência de Vênus
+          </p>
         </div>
 
         <!-- Detalhes do Encontro e Lugares -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 rounded-2xl space-y-1.5">
+          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 sm:p-5 rounded-2xl space-y-1.5">
             <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
               <span>📅</span> Previsão Temporal do Encontro
             </span>
-            <p id="soulmateTimeline" class="text-[#edd0ab]/90 leading-relaxed"></p>
+            <p id="soulmateTimeline" class="text-[#edd0ab]/90 leading-relaxed font-sans"></p>
           </div>
-          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 rounded-2xl space-y-1.5">
+          <div class="bg-brand-cardInner/80 border border-brand-borderDark p-4 sm:p-5 rounded-2xl space-y-1.5">
             <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
               <span>📍</span> Lugares & Circunstâncias Prováveis
             </span>
-            <p id="soulmateLocations" class="text-[#edd0ab]/90 leading-relaxed"></p>
+            <p id="soulmateLocations" class="text-[#edd0ab]/90 leading-relaxed font-sans"></p>
           </div>
         </div>
 
         <!-- Descrição Física -->
         <div class="bg-brand-cardInner/80 border border-brand-borderDark p-5 rounded-2xl space-y-2">
           <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-goldLight block flex items-center gap-1.5">
-            <span>👤</span> Descrição Física & Presença
+            <span>👤</span> Descrição Física & Presença Magnética
           </span>
           <p id="soulmatePhysical" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed italic font-serif"></p>
         </div>
+      </div>
 
-        <!-- Análise Aprofundada da Alma Gêmea (>1000 palavras) -->
-        <div class="bg-brand-cardInner/60 border border-brand-borderDark p-6 sm:p-8 rounded-2xl space-y-3">
-          <span class="text-xs uppercase tracking-wider font-bold text-brand-goldLight block flex items-center gap-1.5">
-            <span>📜</span> Quem Ele É no Fundo da Alma: Perfil Psicológico & Fidelidade
+      <!-- 1B. DOSSIÊ PSICOLÓGICO & PERFIL DE FIDELIDADE (PÁGINA DEDICADA) -->
+      <div class="bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-10 print-card print-page-break space-y-4 shadow-xl">
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-serif uppercase tracking-widest px-3.5 py-1 rounded-full bg-brand-borderDark text-brand-goldLight border border-brand-gold/20">
+            Dossiê Exclusivo da Alma Gêmea
           </span>
-          <div id="soulmateInDepth" class="text-xs sm:text-sm text-[#edd0ab]/90 leading-relaxed font-sans whitespace-pre-line text-justify space-y-3"></div>
         </div>
+        <h2 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce] leading-snug">
+          Quem Ele É no Fundo da Alma: Perfil Psicológico & Fidelidade
+        </h2>
+        <p class="text-xs sm:text-sm text-[#dfc382] font-serif italic pb-2 border-b border-brand-borderDark/60">
+          Uma radiografia profunda sobre seus valores éticos, postura sobre lealdade, convivência e maturidade afetiva
+        </p>
+        <div id="soulmateInDepth" class="pt-2 text-xs sm:text-sm text-[#edd0ab]/95 leading-relaxed font-sans space-y-4"></div>
       </div>
 
       <!-- 2. REGISTRO DA PALMA E AS 3 LINHAS DA VSL -->
@@ -979,12 +1096,29 @@ function renderAppHtml(): string {
 
       // 1. Preenche a Revelação da Alma Gêmea
       if (rep.soulmateReveal) {
-        document.getElementById('soulmateInitials').innerText = rep.soulmateReveal.initials || 'A. M.';
+        let rawInitials = (rep.soulmateReveal.initials || '').trim();
+        let cleanInitials = rawInitials.replace(/["'“”]/g, '').trim();
+        if (!cleanInitials || cleanInitials === '--') {
+          const match = (rep.soulmateReveal.inDepthProfile || '').match(/([A-Z]\.\s*[A-Z]\.)/);
+          cleanInitials = match ? match[1] : 'L. M.';
+        }
+        document.getElementById('soulmateInitials').innerText = cleanInitials;
         document.getElementById('soulmateConnectionType').innerText = '✨ ' + (rep.soulmateReveal.connectionType || 'Conexão Destinada');
         document.getElementById('soulmateTimeline').innerText = rep.soulmateReveal.timeline || '';
         document.getElementById('soulmateLocations').innerText = rep.soulmateReveal.probableLocations || '';
         document.getElementById('soulmatePhysical').innerText = '“' + (rep.soulmateReveal.physicalDescription || '') + '”';
-        document.getElementById('soulmateInDepth').innerText = rep.soulmateReveal.inDepthProfile || '';
+        
+        // Formata o Dossiê Psicológico em parágrafos nobres e justificados
+        const inDepthEl = document.getElementById('soulmateInDepth');
+        if (inDepthEl) {
+          const rawText = rep.soulmateReveal.inDepthProfile || '';
+          const paragraphs = rawText.split('\n').filter(p => p.trim().length > 0);
+          if (paragraphs.length > 1) {
+            inDepthEl.innerHTML = paragraphs.map(p => '<p class="mb-4 text-justify leading-relaxed">' + p.trim() + '</p>').join('');
+          } else {
+            inDepthEl.innerHTML = '<p class="leading-relaxed text-justify mb-4">' + rawText + '</p>';
+          }
+        }
       }
 
       // 2. Preenche as 3 Linhas da Mão (VSL)
@@ -994,20 +1128,25 @@ function renderAppHtml(): string {
         document.getElementById('lineLifeText').innerText = rep.palmistryLines.lifeLine?.meaning || '';
       }
 
-      // 3. Preenche os Capítulos
+      // 3. Preenche os Capítulos com Diagramação Editorial
       const chDiv = document.getElementById('readingChapters');
       chDiv.innerHTML = '';
 
       (rep.chapters || []).forEach(ch => {
         const card = document.createElement('article');
-        card.className = 'bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-10 space-y-4 print-card';
+        card.className = 'bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-10 space-y-4 print-card print-page-break';
+        const paragraphs = (ch.content || '').split('\n').filter(p => p.trim().length > 0);
+        const formattedContent = paragraphs.length > 1
+          ? paragraphs.map(p => '<p class="mb-4 text-justify leading-relaxed">' + p.trim() + '</p>').join('')
+          : '<p class="leading-relaxed text-justify">' + (ch.content || '') + '</p>';
+
         card.innerHTML = 
           '<div class="flex items-center gap-2">' +
             '<span class="text-[11px] font-serif uppercase tracking-widest px-3.5 py-1 rounded-full bg-brand-borderDark text-brand-goldLight border border-brand-gold/20">Capítulo 0' + ch.chapterNumber + '</span>' +
           '</div>' +
           '<h2 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce] leading-snug">' + ch.title + '</h2>' +
           '<p class="text-xs sm:text-sm text-[#dfc382] font-serif italic pb-2 border-b border-brand-borderDark/60">' + ch.subtitle + '</p>' +
-          '<div class="pt-2 text-xs sm:text-sm text-[#edd0ab]/95 leading-relaxed font-sans whitespace-pre-line text-justify space-y-3">' + ch.content + '</div>';
+          '<div class="pt-2 text-xs sm:text-sm text-[#edd0ab]/95 leading-relaxed font-sans space-y-3">' + formattedContent + '</div>';
         chDiv.appendChild(card);
       });
 
