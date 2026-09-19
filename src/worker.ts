@@ -155,7 +155,7 @@ function renderAppHtml(initialView = 'login'): string {
           ✦ Coleta de Coordenadas Pessoais
         </span>
         <h2 class="font-serif text-2xl sm:text-3xl text-[#f6e5ce]">Olá, <span id="onboardingUserName"></span>!</h2>
-        <p class="text-xs sm:text-sm text-[#edd0ab]/70">Para que a Clara e os especialistas entreguem sua Liebeslandkarte, informe seus dados cósmicos e a foto da sua palma.</p>
+        <p class="text-xs sm:text-sm text-[#edd0ab]/70">Para que a Clara e os especialistas entreguem seu Mapa do Amor pessoal, informe seus dados cósmicos e a foto da sua palma.</p>
       </div>
 
       <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" class="bg-brand-cardDark border border-brand-borderDark rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">

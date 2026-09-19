@@ -20,7 +20,7 @@ export default function ClaraWaitingScreen({ readingId, clientName }: ClaraWaiti
     { title: 'Conectando à Clara Falk', desc: 'Iniciando a acolhida da sua energia e dados de nascimento' },
     { title: 'Mapeamento Quiromântico', desc: 'Especialista em quiromancia analisando a Linha do Coração e Monte de Vênus' },
     { title: 'Alinhamento Astrológico', desc: 'Calculando a influência cósmica de Vênus e seus arquétipos afetivos' },
-    { title: 'Redação da Liebeslandkarte', desc: 'Clara Falk escrevendo a síntese da sua bússola do amor' },
+    { title: 'Redação do Mapa do Amor', desc: 'Clara Falk escrevendo a síntese da sua bússola do amor' },
     { title: 'Diagramação do Livro em PDF', desc: 'Gerando o documento oficial diagramado para download e leitura' },
   ];
 
