@@ -4,11 +4,39 @@
   const dialog = $('photo-dialog'), camera = $('camera');
   const player = document.querySelector('vturb-smartplayer');
   let playerReady = false;
+
+  function revealPhotoAction() {
+    const el = $('photo-action');
+    if (el && el.style.display === 'none') {
+      el.style.display = 'block';
+    }
+  }
+
+  const checkCameraGate = (time) => {
+    if (time >= 30) revealPhotoAction();
+  };
+
   // Gate the camera action on playback position, never on page elapsed time.
   player.addEventListener('player:ready', () => {
     playerReady = true;
-    player.displayHiddenElements(30, ['#photo-action'], { display: 'block', persist: false });
+    try {
+      player.displayHiddenElements(30, ['#photo-action'], { display: 'block', persist: false });
+    } catch (e) {}
+    try {
+      if (player.currentTime >= 30) revealPhotoAction();
+    } catch (e) {}
   }, { once: true });
+
+  // Backup garantido: monitora múltiplos eventos de reprodução do Smartplayer e HTML5 video
+  player.addEventListener('video:timeupdate', (e) => checkCameraGate(e.detail?.time || 0));
+  player.addEventListener('timeupdate', () => checkCameraGate(player.currentTime || 0));
+  setInterval(() => {
+    try {
+      const cur = player.currentTime || player.video?.currentTime || 0;
+      if (cur >= 30) checkCameraGate(cur);
+    } catch (e) {}
+  }, 500);
+
   const playerScript = document.createElement('script');
   playerScript.src = 'https://scripts.converteai.net/af9b52cf-e5e4-4213-b5cb-0966a1c95761/players/6aac2f6f17052e6db12238cb/v4/player.js';
   playerScript.async = true;

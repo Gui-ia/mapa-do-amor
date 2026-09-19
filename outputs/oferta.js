@@ -36,12 +36,38 @@
       audioAction.hidden = true;
     } catch { showAudioAction('Toque para assistir ao vídeo'); }
   });
+  function unlockOffer() {
+    if (window.MAPA_OFFER_ACCESS && typeof window.MAPA_OFFER_ACCESS.unlock === 'function') {
+      window.MAPA_OFFER_ACCESS.unlock();
+    }
+  }
+
+  const checkOfferGate = (time) => {
+    if (time >= 240) {
+      unlockOffer();
+    }
+  };
+
   player.addEventListener('player:ready', () => {
     // Playback timestamp only: pausing or leaving the tab open does not advance the gate.
-    player.onTime(240, () => window.MAPA_OFFER_ACCESS.unlock());
-    if (player.currentTime >= 240) window.MAPA_OFFER_ACCESS.unlock();
+    try {
+      player.onTime(240, unlockOffer);
+    } catch (e) {}
+    try {
+      if (player.currentTime >= 240) unlockOffer();
+    } catch (e) {}
     autoplay();
   }, { once: true });
+
+  // Backup garantido: monitora múltiplos eventos de tempo do Smartplayer e HTML5 video
+  player.addEventListener('video:timeupdate', (e) => checkOfferGate(e.detail?.time || 0));
+  player.addEventListener('timeupdate', () => checkOfferGate(player.currentTime || 0));
+  setInterval(() => {
+    try {
+      const cur = player.currentTime || player.video?.currentTime || 0;
+      if (cur >= 240) checkOfferGate(cur);
+    } catch (e) {}
+  }, 500);
   const playerScript = document.createElement('script');
   playerScript.src = 'https://scripts.converteai.net/af9b52cf-e5e4-4213-b5cb-0966a1c95761/players/6aac506d76eb195e3e5f046c/v4/player.js';
   playerScript.async = true;
