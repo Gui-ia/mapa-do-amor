@@ -82,7 +82,8 @@ export default function HandPhotoUploader({ onPhotoUploaded }: HandPhotoUploader
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-3">
+      {/* Input de Câmera Direta */}
       <input
         type="file"
         ref={fileInputRef}
@@ -91,38 +92,60 @@ export default function HandPhotoUploader({ onPhotoUploaded }: HandPhotoUploader
         capture="environment"
         className="hidden"
       />
+      {/* Input de Galeria */}
+      <input
+        type="file"
+        id="galleryInputComp"
+        onChange={handleFileChange}
+        accept="image/*"
+        className="hidden"
+      />
 
       {!photoPreview ? (
-        <div
-          onClick={() => fileInputRef.current?.click()}
-          className="border-2 border-dashed border-[#c5a059]/40 hover:border-[#c5a059] bg-[#201b2e]/60 hover:bg-[#201b2e] transition-all rounded-2xl p-6 sm:p-8 text-center cursor-pointer group flex flex-col items-center justify-center gap-3 relative overflow-hidden"
-        >
-          <div className="w-16 h-16 rounded-full bg-[#332b47] border border-[#c5a059]/40 flex items-center justify-center text-[#dfc382] group-hover:scale-110 transition-transform">
-            <Camera className="w-8 h-8" />
+        <div className="border-2 border-dashed border-[#c5a059]/50 bg-[#201b2e] rounded-2xl p-6 sm:p-8 text-center space-y-4">
+          <div className="w-16 h-16 rounded-full bg-[#332b47] border border-[#c5a059]/60 flex items-center justify-center text-3xl mx-auto shadow-inner">
+            📸
           </div>
 
-          <div className="space-y-1 max-w-sm">
-            <h4 className="text-base font-serif font-medium text-[#f6e5ce]">
-              Tire ou envie uma foto da palma da sua mão
+          <div className="space-y-1 max-w-sm mx-auto">
+            <h4 className="text-base font-serif font-bold text-[#f6e5ce]">
+              Tirar foto da sua mão aberta
             </h4>
             <p className="text-xs text-[#edd0ab]/70">
-              Mão aberta, bem iluminada e com as linhas do coração e da cabeça visíveis
+              Posicione sua mão dominante em um local iluminado com os dedos abertos.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-[#c5a059] font-medium bg-[#171321] px-4 py-2 rounded-full border border-[#c5a059]/30 mt-2">
-            <Upload className="w-3.5 h-3.5" />
-            <span>Toque para tirar foto ou escolher da galeria</span>
+          <div className="pt-2 space-y-2.5 max-w-sm mx-auto">
+            {/* Opção Principal: Abrir Câmera */}
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full bg-gradient-to-r from-[#c5a059] to-[#a66236] hover:brightness-110 text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm transition-all active:scale-95"
+            >
+              <Camera className="w-5 h-5" />
+              <span>Tirar Foto Agora (Abrir Câmera)</span>
+            </button>
+
+            {/* Opção Secundária: Galeria */}
+            <button
+              type="button"
+              onClick={() => document.getElementById('galleryInputComp')?.click()}
+              className="w-full bg-transparent hover:bg-[#332b47]/40 text-[#dfc382] border border-[#c5a059]/30 hover:border-[#c5a059] font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs transition-all"
+            >
+              <Upload className="w-3.5 h-3.5" />
+              <span>Ou escolher foto existente da galeria</span>
+            </button>
           </div>
 
-          <div className="mt-3 flex items-center gap-4 text-[11px] text-[#edd0ab]/50 border-t border-[#332b47]/60 pt-3">
-            <span>✓ Preferencialmente a mão dominante</span>
+          <div className="pt-3 border-t border-[#332b47]/60 flex items-center justify-center gap-4 text-[11px] text-[#edd0ab]/50">
+            <span>✓ Mão dominante</span>
             <span>✓ Luz natural sem sombras</span>
           </div>
         </div>
       ) : (
-        <div className="relative rounded-2xl overflow-hidden border border-[#c5a059]/60 bg-[#201b2e] p-4 flex flex-col sm:flex-row items-center gap-5">
-          <div className="relative w-36 h-48 rounded-xl overflow-hidden border border-[#332b47] shrink-0 bg-black/40">
+        <div className="relative rounded-2xl overflow-hidden border border-[#c5a059]/60 bg-[#201b2e] p-4 flex flex-col sm:flex-row items-center gap-5 shadow-lg">
+          <div className="relative w-28 h-36 rounded-xl overflow-hidden border border-[#332b47] shrink-0 bg-black/40">
             <img
               src={photoPreview}
               alt="Foto da Palma da Mão"
@@ -136,22 +159,32 @@ export default function HandPhotoUploader({ onPhotoUploaded }: HandPhotoUploader
             )}
           </div>
 
-          <div className="flex-1 space-y-3 text-center sm:text-left">
+          <div className="flex-1 space-y-2 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 text-[#dfc382]">
               <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-              <span className="text-sm font-medium">Foto recebida com sucesso!</span>
+              <span className="text-sm font-medium">Foto capturada com sucesso!</span>
             </div>
             <p className="text-xs text-[#edd0ab]/70 leading-relaxed">
-              Nossa equipe de especialistas e a Clara analisarão as bifurcações da sua linha do coração e o monte de Vênus a partir deste registro.
+              As linhas do seu coração e monte de Vênus estão prontas para a análise da Clara Falk.
             </p>
-            <button
-              type="button"
-              onClick={handleReset}
-              className="inline-flex items-center gap-1.5 text-xs text-[#dfc382] hover:text-white underline underline-offset-4"
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-              <span>Tirar outra foto</span>
-            </button>
+            <div className="flex items-center justify-center sm:justify-start gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="inline-flex items-center gap-1 text-xs text-[#dfc382] hover:text-white underline underline-offset-4 font-medium"
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>Tirar outra foto</span>
+              </button>
+              <span className="text-[#edd0ab]/30">•</span>
+              <button
+                type="button"
+                onClick={() => document.getElementById('galleryInputComp')?.click()}
+                className="inline-flex items-center gap-1 text-xs text-[#edd0ab]/60 hover:text-white underline underline-offset-4"
+              >
+                Escolher da galeria
+              </button>
+            </div>
           </div>
         </div>
       )}

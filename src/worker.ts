@@ -176,22 +176,97 @@ function renderAppHtml(initialView = 'login'): string {
         </div>
 
         <!-- Foto da Palma da Mão -->
-        <div class="pt-2">
-          <label class="block text-xs font-medium text-[#edd0ab]/80 mb-2">Foto da Palma da Mão *</label>
-          <input type="file" id="handFileInput" accept="image/*" capture="environment" class="hidden" onchange="handleHandFile(event)">
-          
-          <div id="dropZone" onclick="document.getElementById('handFileInput').click()" class="border-2 border-dashed border-brand-gold/40 hover:border-brand-gold bg-brand-cardInner/60 rounded-2xl p-6 text-center cursor-pointer transition-all">
-            <div class="w-12 h-12 rounded-full bg-brand-borderDark border border-brand-gold/40 flex items-center justify-center mx-auto mb-2 text-brand-goldLight text-xl">✋</div>
-            <h4 class="text-sm font-serif font-medium text-[#f6e5ce]">Toque para tirar foto da sua mão aberta</h4>
-            <p class="text-[11px] text-[#edd0ab]/60 mt-1">Mão dominante bem iluminada, dedos abertos e linhas visíveis</p>
+        <div class="pt-2 space-y-3">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-brand-goldLight mb-1">
+              Foto da Palma da Mão <span class="text-rose-400">*</span>
+            </label>
+            <p class="text-xs text-[#edd0ab]/70">
+              Para uma leitura precisa da Linha do Coração e de Vênus, posicione sua mão aberta em um local bem iluminado.
+            </p>
           </div>
 
-          <div id="previewZone" class="hidden rounded-2xl border border-brand-gold/60 bg-brand-cardInner p-4 flex items-center gap-4">
-            <img id="handImgPreview" src="" alt="Palma da mão" class="w-20 h-28 object-cover rounded-xl border border-brand-borderDark">
+          <!-- Inputs invisíveis para Câmera Direta e Galeria -->
+          <input type="file" id="cameraInput" accept="image/*" capture="environment" class="hidden" onchange="handleHandFile(event)">
+          <input type="file" id="galleryInput" accept="image/*" class="hidden" onchange="handleHandFile(event)">
+
+          <!-- Card de Ação quando nenhuma foto foi tirada ainda -->
+          <div id="dropZone" class="bg-brand-cardInner border-2 border-dashed border-brand-gold/50 rounded-2xl p-6 sm:p-8 text-center space-y-4 transition-all">
+            <!-- Guia de como posicionar a mão -->
+            <div class="w-16 h-16 rounded-full bg-brand-borderDark/80 border border-brand-gold/60 flex items-center justify-center mx-auto text-3xl shadow-inner">
+              📸
+            </div>
+
             <div class="space-y-1">
-              <span class="text-xs text-emerald-400 font-medium">✓ Imagem carregada</span>
-              <p class="text-[11px] text-[#edd0ab]/70">Pronta para análise quiromântica das linhas do coração e da cabeça.</p>
-              <button type="button" onclick="document.getElementById('handFileInput').click()" class="text-[11px] text-brand-goldLight underline">Trocar foto</button>
+              <h4 class="font-serif text-lg font-bold text-[#f6e5ce]">
+                Tirar foto da sua palma agora
+              </h4>
+              <p class="text-xs text-[#edd0ab]/70 max-w-xs mx-auto">
+                Abra a câmera do seu celular, enquadre a mão aberta e capture com nitidez.
+              </p>
+            </div>
+
+            <!-- Botão Principal: Câmera -->
+            <div class="pt-2 space-y-2.5">
+              <button
+                type="button"
+                onclick="document.getElementById('cameraInput').click()"
+                class="w-full bg-gradient-to-r from-brand-gold to-[#a66236] hover:brightness-110 text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-2 text-sm font-sans transition-all active:scale-95"
+              >
+                <span class="text-lg">📷</span>
+                <span>Tirar Foto Agora (Abrir Câmera)</span>
+              </button>
+
+              <!-- Botão Secundário: Galeria -->
+              <button
+                type="button"
+                onclick="document.getElementById('galleryInput').click()"
+                class="w-full bg-transparent hover:bg-brand-borderDark/40 text-[#dfc382] border border-brand-gold/30 hover:border-brand-gold font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs font-sans transition-all"
+              >
+                <span>🖼️</span>
+                <span>Ou escolher foto existente da galeria</span>
+              </button>
+            </div>
+
+            <!-- Dicas rápidas -->
+            <div class="pt-3 border-t border-brand-borderDark/60 flex items-center justify-center gap-4 text-[11px] text-[#edd0ab]/50">
+              <span>✓ Mão dominante</span>
+              <span>✓ Dedos abertos</span>
+              <span>✓ Luz natural ou branca</span>
+            </div>
+          </div>
+
+          <!-- Preview após capturar a foto -->
+          <div id="previewZone" class="hidden rounded-2xl border border-brand-gold/60 bg-brand-cardInner p-4 flex flex-col sm:flex-row items-center gap-5 shadow-lg">
+            <div class="relative w-28 h-36 rounded-xl overflow-hidden border border-brand-borderDark bg-black/60 shrink-0">
+              <img id="handImgPreview" src="" alt="Palma da mão capturada" class="w-full h-full object-cover">
+              <div class="absolute bottom-1 right-1 bg-emerald-500 text-white rounded-full p-0.5 text-[10px] shadow">✓</div>
+            </div>
+
+            <div class="flex-1 space-y-2 text-center sm:text-left">
+              <div class="text-xs font-semibold text-emerald-400 flex items-center justify-center sm:justify-start gap-1.5">
+                <span>Foto capturada com sucesso!</span>
+              </div>
+              <p class="text-xs text-[#edd0ab]/75 leading-relaxed">
+                As linhas do seu coração e monte de Vênus estão prontas para serem enviadas à Clara Falk.
+              </p>
+              <div class="flex items-center justify-center sm:justify-start gap-3 pt-1">
+                <button
+                  type="button"
+                  onclick="document.getElementById('cameraInput').click()"
+                  class="text-xs text-brand-goldLight hover:text-white underline underline-offset-4 flex items-center gap-1 font-medium"
+                >
+                  <span>📷 Tirar outra foto</span>
+                </button>
+                <span class="text-[#edd0ab]/30">•</span>
+                <button
+                  type="button"
+                  onclick="document.getElementById('galleryInput').click()"
+                  class="text-xs text-[#edd0ab]/60 hover:text-white underline underline-offset-4"
+                >
+                  Escolher da galeria
+                </button>
+              </div>
             </div>
           </div>
         </div>
