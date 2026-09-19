@@ -1,0 +1,8 @@
+# REGRAS INVIOLÁVEIS DO MAPA DO AMOR (lecturalunar.com)
+
+1. A página inicial (https://lecturalunar.com/) DEVE SEMPRE SER a Mini VSL 1 em português brasileiro (outputs/index.html) com o player VTurb vid-6aac2f6f17052e6db12238cb.
+2. A página de oferta (https://lecturalunar.com/oferta) DEVE SEMPRE SER a Mini VSL 2 em português (outputs/oferta.html) com o player VTurb vid-6aac506d76eb195e3e5f046c.
+3. A página de preparação (https://lecturalunar.com/preparando) DEVE SEMPRE SER outputs/preparando.html.
+4. NUNCA coloque qualquer arquivo em alemão na raiz de outputs ou no Worker.
+5. A área de membros fica exclusivamente na rota /app.
+6. Sempre após deploy, rode o smoke test validando https://lecturalunar.com/ e https://lecturalunar.com/oferta.

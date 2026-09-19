@@ -1,0 +1,45 @@
+:root { --ink:#302128; --muted:#72636c; --rose:#e52c70; --rose-dark:#ca1f5d; --paper:#fffaf9; --line:#e5d7dc; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.site-header { max-width:1128px; margin:auto; padding:24px 0 22px; border-bottom:1px solid var(--line); }
+.brand { color:var(--rose); font:29px/1.1 Georgia,"Times New Roman",serif; letter-spacing:-1.1px; }
+.brand>span { margin-left:5px; font-size:27px; }
+main { display:grid; grid-template-columns:1.15fr 1fr; gap:72px; align-items:center; max-width:1128px; margin:0 auto; padding:44px 24px 60px 0; background:radial-gradient(ellipse at 78% 44%,#f6e5eb99,transparent 67%); }
+.hero-copy { padding-bottom:30px; }
+h1 { margin:0; max-width:540px; font:400 clamp(44px,4.45vw,64px)/1.12 Georgia,"Times New Roman",serif; letter-spacing:-1.8px; text-wrap:balance; }
+h1 em { color:var(--rose); font-weight:400; }
+.reading { width:min(342px,100%); justify-self:center; }
+.player { position:relative; aspect-ratio:9/16; background:#f6e6ed; border:1px solid #e7ccd6; border-radius:18px; overflow:hidden; isolation:isolate; box-shadow:0 20px 55px #5d234518; }
+button { font:inherit; touch-action:manipulation; }
+button:focus-visible { outline:3px solid var(--rose-dark); outline-offset:4px; }
+button:disabled { opacity:.6; cursor:wait; }
+.primary { width:100%; min-height:58px; padding:16px 20px; border:0; border-radius:8px; color:#fff; background:var(--rose); box-shadow:0 5px 13px #6c2d4a12; font-size:16px; line-height:1.4; font-weight:650; cursor:pointer; transition:background .15s,transform .15s; }
+.primary:hover { background:var(--rose-dark); }
+.primary:active { transform:translateY(1px); }
+.camera-cta { display:flex; align-items:center; justify-content:center; gap:11px; margin-top:22px; }
+.camera-cta svg { width:22px; height:22px; flex-shrink:0; }
+#page-status { color:var(--muted); text-align:center; font-size:14px; line-height:1.5; margin:12px 0 0; }
+dialog { width:min(440px,calc(100% - 32px)); max-height:calc(100svh - 32px); padding:28px; border:1px solid #f1dce4; border-radius:22px; color:var(--ink); background:var(--paper); text-align:left; overflow:auto; box-shadow:0 30px 90px #30212838; }
+dialog::backdrop { background:#30212880; backdrop-filter:blur(5px); }
+.dialog-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+h2 { font:400 29px/1.15 Georgia,"Times New Roman",serif; letter-spacing:-.6px; margin:0; }
+.close { width:36px; min-height:36px; margin:-7px -8px 0 0; border:0; background:transparent; color:var(--muted); font-size:30px; line-height:1; flex-shrink:0; cursor:pointer; }
+#photo-help { font-size:16px; line-height:1.6; color:var(--muted); margin:16px 0 20px; }
+.camera-frame { display:grid; place-items:center; width:100%; height:min(40svh,330px); margin-bottom:18px; border:1px solid var(--line); border-radius:12px; background:#f8eef1; overflow:hidden; }
+.camera-frame video,.camera-frame img { width:100%; height:100%; object-fit:contain; min-height:0; }
+.camera-frame p { padding:24px; text-align:center; color:var(--muted); font-size:16px; line-height:1.5; }
+.secondary { width:100%; margin-top:10px; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--rose-dark); font-size:16px; cursor:pointer; }
+.secondary:hover { background:#fff0f5; }
+#photo-error { color:#a51c32; font-size:15px; line-height:1.4; }
+[hidden] { display:none!important; }
+@media(max-width:1200px) { .site-header { margin:0 36px; } main { margin:0 36px; gap:48px; padding-right:0; } }
+@media(max-width:760px) {
+ .site-header { padding:21px 0 20px; margin:0 24px; } .brand { font-size:25px; } .brand>span { font-size:23px; }
+ main { grid-template-columns:1fr; gap:25px; margin:0 auto; padding:31px 24px 40px; background:radial-gradient(ellipse at 50% 48%,#f6e5eb99,transparent 72%); }
+ .hero-copy { width:min(342px,100%); padding:0; margin:auto; }
+ h1 { font-size:38px; line-height:1.1; letter-spacing:-.95px; text-wrap:initial; }
+ .reading { width:min(342px,100%); }
+ .player { border-radius:14px; box-shadow:0 14px 35px #5d234515; } .camera-cta { margin-top:18px; } dialog { padding:24px; }
+}
+@media(max-width:360px) { main { padding-left:20px; padding-right:20px; } .site-header { margin-left:20px; margin-right:20px; } h1 { font-size:34px; } .primary { padding-left:12px; padding-right:12px; font-size:15px; } }
+@media(prefers-reduced-motion:reduce) { * { transition:none!important; } }
