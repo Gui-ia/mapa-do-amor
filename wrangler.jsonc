@@ -12,6 +12,7 @@
   },
   "vars": {
     "SUPABASE_URL": "https://udxxcswwfuunvjelxalk.supabase.co",
+    "SUPABASE_ANON_KEY": "sb_publishable_0GfC4BUWF5w3KVkq1peX-w_rM60mv9P",
     "PERFECTPAY_WEBHOOK_TOKEN": "f13dbcbe1105b9517dd8141666cb17fe",
     "EMAIL_FROM": "Clara Falk <acesso@lecturalunar.com>",
     "EMAIL_REPLY_TO": "suporte@lecturalunar.com"

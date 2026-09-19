@@ -20,11 +20,12 @@ export interface Env {
 }
 
 const DEFAULT_SUPABASE_URL = 'https://udxxcswwfuunvjelxalk.supabase.co';
+const DEFAULT_SUPABASE_KEY = 'sb_publishable_0GfC4BUWF5w3KVkq1peX-w_rM60mv9P';
 const DEFAULT_OPENAI_KEY = '';
 
 function getSupabase(env: Env) {
   const url = env.SUPABASE_URL || DEFAULT_SUPABASE_URL;
-  const key = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.placeholder';
+  const key = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_KEY;
   return createClient(url, key);
 }
 
