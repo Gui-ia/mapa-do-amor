@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lecturalunar-mapa-do-amor",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-09-17",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": "outputs",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "SUPABASE_URL": "https://udxxcswwfuunvjelxalk.supabase.co",
+    "PERFECTPAY_WEBHOOK_TOKEN": "f13dbcbe1105b9517dd8141666cb17fe"
+  }
+}
