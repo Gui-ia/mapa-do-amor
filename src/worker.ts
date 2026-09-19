@@ -416,7 +416,7 @@ function renderAppHtml(): string {
             <div class="text-xs uppercase tracking-wider font-bold text-brand-goldLight">
               Prazo Oficial de Entrega
             </div>
-            <div class="font-serif text-xl sm:text-2xl text-[#f6e5ce] font-bold">
+            <div id="protocolDeadlineTitle" class="font-serif text-xl sm:text-2xl text-[#f6e5ce] font-bold">
               Até 24 horas para conclusão
             </div>
             <p class="text-xs text-[#edd0ab]/80 leading-relaxed">
@@ -432,6 +432,71 @@ function renderAppHtml(): string {
         </div>
       </div>
 
+      <!-- UPSELL / ORDER BUMP: ENTREGA EXPRESSA EM 6 HORAS (R$ 9,90) -->
+      <div id="expressUpsellCard" class="relative overflow-hidden bg-gradient-to-br from-[#381628] via-[#221026] to-[#160c1c] border-2 border-amber-400/70 rounded-3xl p-6 sm:p-7 shadow-[0_0_35px_rgba(245,158,11,0.2)] space-y-4">
+        <!-- Tag de Destaque -->
+        <div class="flex items-center justify-between gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[11px] font-bold uppercase tracking-wider">
+            <span>⚡</span> Oferta Especial de Prioridade
+          </span>
+          <span class="text-[11px] text-amber-200/80 font-medium">Fila Exclusiva</span>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-serif text-xl sm:text-2xl text-[#fef3c7] leading-snug font-bold">
+            Deseja furar a fila e receber seu Mapa em até 6 Horas?
+          </h3>
+          <p class="text-xs text-[#edd0ab]/90 leading-relaxed">
+            Como a Clara analisa pessoalmente cada curva da sua mão e o alinhamento do seu céu, os atendimentos seguem a ordem natural de chegada no prazo de até 24 horas.
+          </p>
+          <p class="text-xs text-[#edd0ab]/90 leading-relaxed">
+            Por apenas <strong class="text-emerald-400 text-sm">R$ 9,90</strong> adicionais, a Clara coloca o seu livro na <strong>mesa de prioridade máxima</strong> para entrega expressa em <strong>até 6 horas</strong>.
+          </p>
+        </div>
+
+        <!-- Preço e Botão de Checkout -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-amber-400/20">
+          <div class="text-center sm:text-left">
+            <span class="text-[11px] text-[#edd0ab]/60 line-through block">De R$ 29,90</span>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xs font-bold text-amber-300">Por apenas</span>
+              <span class="font-serif text-2xl font-bold text-emerald-400">R$ 9,90</span>
+            </div>
+          </div>
+
+          <a
+            id="expressCheckoutLink"
+            href="https://go.perfectpay.com.br/PPU38CQGAA3"
+            target="_blank"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-amber-500/30 text-xs sm:text-sm font-sans transition-all active:scale-95"
+          >
+            <span>⚡ Acelerar Meu Mapa por R$ 9,90</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="flex items-center justify-center gap-3 text-[10px] text-amber-200/60 pt-1">
+          <span>✓ Prioridade no topo da mesa</span>
+          <span>•</span>
+          <span>✓ Pagamento único via PIX/Cartão</span>
+          <span>•</span>
+          <span>✓ Notificação prioritária no e-mail</span>
+        </div>
+      </div>
+
+      <!-- Card exibido quando a cliente JÁ COMPROU a prioridade de 6 horas -->
+      <div id="expressActiveBadge" class="hidden bg-gradient-to-r from-emerald-950/80 to-teal-950/80 border-2 border-emerald-500/60 rounded-2xl p-5 flex items-center gap-4 shadow-lg">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-2xl shrink-0 text-emerald-300">
+          ⚡
+        </div>
+        <div class="space-y-0.5">
+          <span class="text-xs font-bold text-emerald-300 uppercase tracking-wider block">Prioridade Sagrada Ativada!</span>
+          <p class="text-xs text-emerald-100/90 leading-relaxed">
+            Seu protocolo foi movido para o topo da fila de Clara Falk. Prazo express de entrega: <strong>até 6 horas</strong>.
+          </p>
+        </div>
+      </div>
+
       <!-- Resumo do Protocolo -->
       <div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl p-5 space-y-3 text-xs">
         <div class="text-[11px] font-semibold uppercase tracking-wider text-brand-goldLight pb-2 border-b border-brand-borderDark flex justify-between">
@@ -441,8 +506,8 @@ function renderAppHtml(): string {
         <div class="grid grid-cols-2 gap-2 text-[#edd0ab]/80">
           <div><span class="text-[#edd0ab]/50 block">Destinatária:</span> <strong id="protocolClientName" class="text-white"></strong></div>
           <div><span class="text-[#edd0ab]/50 block">E-mail de Contato:</span> <strong id="protocolEmail" class="text-white"></strong></div>
-          <div><span class="text-[#edd0ab]/50 block">Status:</span> <span class="text-amber-300 font-medium">🟡 Em elaboração minuciosa por Clara</span></div>
-          <div><span class="text-[#edd0ab]/50 block">Previsão:</span> <span class="text-emerald-300 font-medium">Dentro do prazo de 24h</span></div>
+          <div><span class="text-[#edd0ab]/50 block">Status:</span> <span id="protocolStatusText" class="text-amber-300 font-medium">🟡 Em elaboração minuciosa por Clara</span></div>
+          <div><span class="text-[#edd0ab]/50 block">Previsão:</span> <span id="protocolPrevisaoText" class="text-emerald-300 font-medium">Dentro do prazo de 24h</span></div>
         </div>
       </div>
 
@@ -1059,10 +1124,45 @@ function renderAppHtml(): string {
       } catch (e) {}
     }
 
+    let waitingPollTimer = null;
+
+    function applyPriorityExpressUI(isPriority) {
+      const upsellCard = document.getElementById('expressUpsellCard');
+      const activeBadge = document.getElementById('expressActiveBadge');
+      const deadlineTitle = document.getElementById('protocolDeadlineTitle');
+      const previsaoText = document.getElementById('protocolPrevisaoText');
+      const statusText = document.getElementById('protocolStatusText');
+
+      if (isPriority) {
+        if (upsellCard) upsellCard.classList.add('hidden');
+        if (activeBadge) activeBadge.classList.remove('hidden');
+        if (deadlineTitle) deadlineTitle.innerText = '⚡ Até 6 horas para conclusão (Fila Prioritária)';
+        if (previsaoText) previsaoText.innerHTML = '<span class="text-emerald-300 font-bold">⚡ Fila Prioritária (Até 6h)</span>';
+        if (statusText) statusText.innerHTML = '<span class="text-emerald-300 font-medium">⚡ No topo da mesa de Clara Falk</span>';
+      } else {
+        if (upsellCard) upsellCard.classList.remove('hidden');
+        if (activeBadge) activeBadge.classList.add('hidden');
+        if (deadlineTitle) deadlineTitle.innerText = 'Até 24 horas para conclusão';
+        if (previsaoText) previsaoText.innerText = 'Dentro do prazo de 24h';
+        if (statusText) statusText.innerText = '🟡 Em elaboração minuciosa por Clara';
+      }
+    }
+
     function showWaitingProtocol(protocol) {
       document.getElementById('protocolNumber').innerText = '#' + protocol.protocolNumber;
       document.getElementById('protocolClientName').innerText = protocol.fullName;
-      document.getElementById('protocolEmail').innerText = protocol.email || 'Cadastrado no pedido';
+      const clientEmail = protocol.email || (currentUser ? currentUser.email : '');
+      document.getElementById('protocolEmail').innerText = clientEmail || 'Cadastrado no pedido';
+
+      // Preenche o link de checkout de prioridade expressa com email e nome da cliente
+      const checkoutLink = document.getElementById('expressCheckoutLink');
+      if (checkoutLink) {
+        checkoutLink.href = 'https://go.perfectpay.com.br/PPU38CQGAA3?email=' + encodeURIComponent(clientEmail) + '&name=' + encodeURIComponent(protocol.fullName || '');
+      }
+
+      // Aplica visual de prioridade caso já adquirido
+      const isPriority = Boolean(protocol.isPriorityExpress || (currentUser && currentUser.isPriorityExpress));
+      applyPriorityExpressUI(isPriority);
 
       if (currentReading) {
         const btn = document.getElementById('checkReadingBtn');
@@ -1071,6 +1171,35 @@ function renderAppHtml(): string {
       }
 
       switchView('waiting');
+
+      // Polling a cada 8s para sincronizar se a cliente pagou o PIX de R$ 9,90 ou se o livro ficou pronto
+      if (!waitingPollTimer && clientEmail) {
+        waitingPollTimer = setInterval(async () => {
+          try {
+            const res = await fetch('/api/auth/activate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: clientEmail })
+            });
+            const d = await res.json();
+            if (d && d.isPriorityExpress) {
+              protocol.isPriorityExpress = true;
+              if (currentUser) currentUser.isPriorityExpress = true;
+              localStorage.setItem('mapa_protocol', JSON.stringify(protocol));
+              applyPriorityExpressUI(true);
+            }
+            if (d && d.reading && !currentReading) {
+              currentReading = d.reading;
+              localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
+              const btn = document.getElementById('checkReadingBtn');
+              if (btn) {
+                btn.innerHTML = '<span>✨ Seu Livro Está Pronto! Acessar Agora</span> <span>→</span>';
+                btn.className = 'w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl shadow-xl transition-all text-sm font-sans flex items-center justify-center gap-2 animate-bounce';
+              }
+            }
+          } catch (e) {}
+        }, 8000);
+      }
     }
 
     function checkIfReadingIsReady() {
@@ -1306,15 +1435,35 @@ export default {
         const fullName = payload?.customer?.full_name?.trim() || 'Cliente Mapa do Amor';
         const supabase = getSupabase(env);
 
+        // Detecta se a venda é do Upsell de Prioridade Expressa (6 Horas - PPU38CQGAA3)
+        const productCode = String(payload?.product_code || payload?.product?.code || payload?.plan?.code || payload?.plan_code || payload?.code || '');
+        const productName = String(payload?.product_name || payload?.product?.name || payload?.plan?.name || '');
+        const isPriorityExpress = productCode.includes('PPU38CQGAA3') ||
+                                  productName.toLowerCase().includes('6 horas') ||
+                                  productName.toLowerCase().includes('prioridade') ||
+                                  (Number(payload?.sale_amount) >= 9.00 && Number(payload?.sale_amount) <= 12.00);
+
         // 1. Salva ou atualiza na tabela profiles
         try {
-          await supabase.from('profiles').upsert({
+          const profileData: any = {
             email,
             full_name: fullName,
             phone: payload?.customer?.phone_formated || null,
             cpf: payload?.customer?.identification_number || null,
             updated_at: new Date().toISOString(),
-          }, { onConflict: 'email' });
+          };
+          if (isPriorityExpress) {
+            profileData.is_priority_express = true;
+          }
+          await supabase.from('profiles').upsert(profileData, { onConflict: 'email' });
+
+          if (isPriorityExpress) {
+            try {
+              await supabase.from('readings')
+                .update({ is_priority_express: true })
+                .ilike('customer_email', email);
+            } catch (rUpdateErr) {}
+          }
         } catch (profErr) {
           console.warn('[Supabase Profiles Webhook Error]:', profErr);
         }
@@ -1394,6 +1543,37 @@ export default {
             updated_at: new Date().toISOString(),
           }, { onConflict: 'email' });
 
+          // Verifica se possui compra do upsell de 6 horas
+          let isPriorityExpress = false;
+          try {
+            const { data: userOrders } = await supabase
+              .from('orders')
+              .select('transaction_code, raw_payload')
+              .ilike('customer_email', email)
+              .eq('status', 'approved');
+
+            if (Array.isArray(userOrders)) {
+              isPriorityExpress = userOrders.some(o =>
+                String(o.transaction_code).includes('PPU38CQGAA3') ||
+                JSON.stringify(o.raw_payload || {}).includes('PPU38CQGAA3') ||
+                JSON.stringify(o.raw_payload || {}).toLowerCase().includes('6 horas') ||
+                JSON.stringify(o.raw_payload || {}).toLowerCase().includes('prioridade')
+              );
+            }
+
+            const { data: profCheck } = await supabase
+              .from('profiles')
+              .select('is_priority_express')
+              .ilike('email', email)
+              .maybeSingle();
+
+            if (profCheck && (profCheck as any).is_priority_express) {
+              isPriorityExpress = true;
+            }
+          } catch (pCheckErr) {
+            console.warn('[Priority Check Error]:', pCheckErr);
+          }
+
           // Busca leitura existente salva no Supabase (se houver)
           let existingReading = null;
           const { data: readData } = await supabase
@@ -1412,13 +1592,14 @@ export default {
             success: true, 
             email, 
             fullName, 
+            isPriorityExpress: Boolean(isPriorityExpress),
             reading: existingReading 
           }), {
             headers: { 'content-type': 'application/json' },
           });
         } catch (dbErr) {
           console.warn('[Supabase DB] Usando fallback local:', dbErr);
-          return new Response(JSON.stringify({ success: true, email, fullName }), {
+          return new Response(JSON.stringify({ success: true, email, fullName, isPriorityExpress: false }), {
             headers: { 'content-type': 'application/json' },
           });
         }
@@ -1588,6 +1769,7 @@ ESTRUTURA EXCLUSIVA EM JSON:
           console.log('[Worker Process] Chamando modelo OpenAI o1 com 25.000 tokens...');
           const o1Completion = await openai.chat.completions.create({
             model: 'o1',
+            reasoning_effort: 'low',
             max_completion_tokens: 25000,
             response_format: { type: 'json_object' },
             messages: [
