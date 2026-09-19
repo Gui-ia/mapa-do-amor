@@ -206,14 +206,14 @@ function renderAppHtml(initialView = 'login'): string {
               </p>
             </div>
 
-            <!-- Botão Principal: Câmera -->
+            <!-- Botão Principal: Câmera com permissão nativa ao vivo -->
             <div class="pt-2 space-y-2.5">
               <button
                 type="button"
-                onclick="document.getElementById('cameraInput').click()"
-                class="w-full bg-gradient-to-r from-brand-gold to-[#a66236] hover:brightness-110 text-[#171321] font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-2 text-sm font-sans transition-all active:scale-95"
+                onclick="startLiveCamera()"
+                class="w-full bg-gradient-to-r from-brand-gold to-[#a66236] hover:brightness-110 text-[#171321] font-bold py-4 px-6 rounded-xl shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-2 text-sm font-sans transition-all active:scale-95"
               >
-                <span class="text-lg">📷</span>
+                <span class="text-xl">📷</span>
                 <span>Tirar Foto Agora (Abrir Câmera)</span>
               </button>
 
@@ -544,7 +544,146 @@ function renderAppHtml(initialView = 'login'): string {
         window.print();
       }
     }
+
+    // ==========================================
+    // CÂMERA AO VIVO COM GETUSERMEDIA E PERMISSÃO
+    // ==========================================
+    let currentCameraStream = null;
+    let currentFacingMode = 'environment';
+
+    async function startLiveCamera() {
+      const cameraModal = document.getElementById('cameraModal');
+      const video = document.getElementById('cameraVideo');
+      const errorBox = document.getElementById('cameraError');
+      const errorText = document.getElementById('cameraErrorText');
+      errorBox.classList.add('hidden');
+      cameraModal.classList.remove('hidden');
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        // Fallback se o navegador for muito antigo
+        cameraModal.classList.add('hidden');
+        document.getElementById('cameraInput').click();
+        return;
+      }
+
+      try {
+        if (currentCameraStream) {
+          currentCameraStream.getTracks().forEach(t => t.stop());
+        }
+
+        let stream;
+        try {
+          // Solicita permissão para câmera traseira/ambiente em smartphones
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: currentFacingMode }, width: { ideal: 1280 }, height: { ideal: 720 } },
+            audio: false
+          });
+        } catch (facingErr) {
+          // Fallback para webcam do computador ou qualquer câmera disponível
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+          });
+        }
+
+        currentCameraStream = stream;
+        video.srcObject = stream;
+        await video.play();
+      } catch (err) {
+        console.error('Erro de permissão da câmera:', err);
+        errorText.innerText = 'Permissão para usar a câmera foi bloqueada ou recusada. Você pode permitir clicando no ícone de cadeado/configurações do navegador ou escolher da galeria.';
+        errorBox.classList.remove('hidden');
+      }
+    }
+
+    function capturePhotoFromCamera() {
+      const video = document.getElementById('cameraVideo');
+      if (!video || !video.videoWidth) {
+        alert('Aguarde o vídeo da câmera iniciar...');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      handPhotoBase64 = canvas.toDataURL('image/jpeg', 0.92);
+      document.getElementById('handImgPreview').src = handPhotoBase64;
+      document.getElementById('dropZone').classList.add('hidden');
+      document.getElementById('previewZone').classList.remove('hidden');
+
+      closeCameraModal();
+    }
+
+    function switchCamera() {
+      currentFacingMode = (currentFacingMode === 'environment') ? 'user' : 'environment';
+      startLiveCamera();
+    }
+
+    function closeCameraModal() {
+      if (currentCameraStream) {
+        currentCameraStream.getTracks().forEach(t => t.stop());
+        currentCameraStream = null;
+      }
+      document.getElementById('cameraModal').classList.add('hidden');
+    }
   </script>
+
+  <!-- Modal de Câmera Ao Vivo com Permissão Nativa -->
+  <div id="cameraModal" class="hidden fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-6 backdrop-blur-md">
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between z-10 max-w-md w-full mx-auto">
+      <span class="text-xs font-serif uppercase tracking-widest text-brand-goldLight flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+        Câmera Ao Vivo
+      </span>
+      <button type="button" onclick="closeCameraModal()" class="w-9 h-9 rounded-full bg-brand-borderDark text-white flex items-center justify-center hover:bg-rose-900 transition-colors text-base font-bold">
+        ✕
+      </button>
+    </div>
+
+    <!-- Visor de Vídeo Central -->
+    <div class="relative flex-1 max-w-md w-full mx-auto my-3 rounded-3xl overflow-hidden border-2 border-brand-gold/50 flex items-center justify-center bg-zinc-950 shadow-2xl">
+      <video id="cameraVideo" autoplay playsinline muted class="w-full h-full object-cover"></video>
+
+      <!-- Guia de Enquadramento da Mão -->
+      <div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center border-4 border-dashed border-brand-gold/40 m-6 rounded-3xl">
+        <span class="text-5xl opacity-60 mb-3">✋</span>
+        <span class="text-xs font-medium text-[#f6e5ce] bg-black/70 px-4 py-1.5 rounded-full text-center max-w-[220px] backdrop-blur-sm border border-brand-gold/30">
+          Enquadre a palma da sua mão aberta aqui
+        </span>
+      </div>
+
+      <!-- Mensagem de Erro de Permissão -->
+      <div id="cameraError" class="hidden absolute inset-0 bg-black/95 p-6 flex flex-col items-center justify-center text-center space-y-4">
+        <span class="text-4xl">⚠️</span>
+        <p class="text-xs text-rose-300 leading-relaxed max-w-xs" id="cameraErrorText">
+          Permissão de câmera não concedida. Por favor, autorize o acesso à câmera no seu navegador ou envie da galeria.
+        </p>
+        <button type="button" onclick="document.getElementById('galleryInput').click(); closeCameraModal();" class="text-xs bg-brand-gold text-[#171321] font-bold px-5 py-2.5 rounded-xl shadow-md">
+          Escolher foto da galeria
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Controles Inferior -->
+    <div class="flex items-center justify-center gap-8 py-3 z-10 max-w-md w-full mx-auto">
+      <button type="button" onclick="switchCamera()" class="p-3.5 rounded-full bg-brand-cardInner border border-brand-borderDark text-brand-goldLight hover:text-white transition-all text-lg shadow-md" title="Alternar Câmera">
+        🔄
+      </button>
+      
+      <!-- Botão Redondo de Disparo da Foto -->
+      <button type="button" onclick="capturePhotoFromCamera()" class="w-20 h-20 rounded-full border-4 border-white bg-gradient-to-tr from-brand-gold to-brand-goldLight shadow-2xl flex items-center justify-center text-3xl active:scale-90 transition-transform shadow-brand-gold/40">
+        📸
+      </button>
+
+      <button type="button" onclick="document.getElementById('galleryInput').click(); closeCameraModal();" class="p-3.5 rounded-full bg-brand-cardInner border border-brand-borderDark text-brand-goldLight hover:text-white transition-all text-lg shadow-md" title="Abrir Galeria">
+        🖼️
+      </button>
+    </div>
+  </div>
 </body>
 </html>`;
 }
