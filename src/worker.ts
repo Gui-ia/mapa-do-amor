@@ -80,11 +80,12 @@ function renderAppHtml(): string {
     
     /* Estilos para impressão / Download de PDF denso */
     @media print {
-      body { background: white !important; color: #1a1a1a !important; }
+      body { background: white !important; color: #111827 !important; }
       header, footer, #userHeaderActions, #downloadPdfBtn, #printBtn, #cameraModal { display: none !important; }
       .print-page-break { page-break-before: always; }
-      .print-card { border: 1px solid #d4af37 !important; background: white !important; color: #1a1a1a !important; box-shadow: none !important; margin-bottom: 2rem !important; padding: 2rem !important; }
-      .gold-text { color: #855f1e !important; -webkit-text-fill-color: #855f1e !important; }
+      .print-card { border: 1px solid #d4af37 !important; background: white !important; color: #111827 !important; box-shadow: none !important; margin-bottom: 2rem !important; padding: 2rem !important; }
+      .print-card * { color: #1f2937 !important; -webkit-text-fill-color: initial !important; }
+      .print-card h1, .print-card h2, .print-card h3, .gold-text { color: #855f1e !important; -webkit-text-fill-color: #855f1e !important; }
       #view-leituras { display: block !important; }
       #view-login, #view-onboarding, #view-waiting { display: none !important; }
     }
@@ -835,6 +836,11 @@ function renderAppHtml(): string {
         currentUser = { email, fullName: data.fullName || 'Cliente' };
         localStorage.setItem('mapa_user', JSON.stringify(currentUser));
 
+        if (data.reading) {
+          currentReading = data.reading;
+          localStorage.setItem('mapa_reading', JSON.stringify(currentReading));
+        }
+
         document.getElementById('navLeiturasBtn').classList.remove('hidden');
         document.getElementById('logoutBtn').classList.remove('hidden');
 
@@ -842,10 +848,16 @@ function renderAppHtml(): string {
         document.getElementById('obFullName').value = currentUser.fullName;
 
         // Se o usuário já tinha enviado anteriormente, vai pra tela de protocolo ou leituras
-        if (currentReading) {
+        const hasViewedReading = localStorage.getItem('mapa_view_reading') === 'true';
+        if (currentReading && hasViewedReading) {
           renderCompletedReading(currentReading);
-        } else if (currentProtocol) {
-          showWaitingProtocol(currentProtocol);
+        } else if (currentProtocol || currentReading) {
+          showWaitingProtocol(currentProtocol || {
+            protocolNumber: 'CF-' + Math.floor(100000 + Math.random() * 900000),
+            fullName: currentUser.fullName,
+            email: currentUser.email,
+            submittedAt: 'Aguardando liberação de Clara'
+          });
         } else {
           switchView('onboarding');
         }
@@ -1242,13 +1254,35 @@ export default {
             full_name: fullName,
             updated_at: new Date().toISOString(),
           }, { onConflict: 'email' });
+
+          // Busca leitura existente salva no Supabase (se houver)
+          let existingReading = null;
+          const { data: readData } = await supabase
+            .from('readings')
+            .select('*')
+            .ilike('customer_email', email)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+          if (readData && readData.report_data) {
+            existingReading = readData;
+          }
+
+          return new Response(JSON.stringify({ 
+            success: true, 
+            email, 
+            fullName, 
+            reading: existingReading 
+          }), {
+            headers: { 'content-type': 'application/json' },
+          });
         } catch (dbErr) {
           console.warn('[Supabase DB] Usando fallback local:', dbErr);
+          return new Response(JSON.stringify({ success: true, email, fullName }), {
+            headers: { 'content-type': 'application/json' },
+          });
         }
-
-        return new Response(JSON.stringify({ success: true, email, fullName }), {
-          headers: { 'content-type': 'application/json' },
-        });
       } catch (err: any) {
         return new Response(JSON.stringify({ error: err.message }), { status: 500 });
       }
@@ -1286,8 +1320,8 @@ export default {
         // Prompt do GPT-4o estritamente alinhado com a VSL e voz em 1ª pessoa de Clara Falk
         const completion = await openai.chat.completions.create({
           model: 'gpt-4o',
-          temperature: 0.75,
-          max_tokens: 4000,
+          temperature: 0.72,
+          max_tokens: 8000,
           response_format: { type: 'json_object' },
           messages: [
             {
@@ -1296,7 +1330,7 @@ export default {
 Você é conhecida pelo seu olhar sensível, acolhedor e profundo sobre a trajetória amorosa das pessoas, interpretando as linhas das mãos combinadas à sabedoria astrológica de Vênus.
 
 SUA MISSÃO:
-Escrever pessoalmente o DOSSIÊ COMPLETO E OFICIAL DO MAPA DO AMOR para ${clientName}.
+Escrever pessoalmente o DOSSIÊ COMPLETO, PROFUNDO, LONGO E OFICIAL DO MAPA DO AMOR para ${clientName}.
 Você está examinando os dados de nascimento (${birthDate}${birthTime ? ` às ${birthTime}` : ''}) e a foto real da palma da mão dela.
 
 DIRETRIZES FUNDAMENTAIS DE VOZ E TOM:
@@ -1305,24 +1339,26 @@ DIRETRIZES FUNDAMENTAIS DE VOZ E TOM:
    - NUNCA use "nós", "nossa equipe", "especialistas", "laboratório" ou terceiros. O atendimento e a leitura são 100% PESSOAIS SEUS.
 2. ZERO TERMOS TÉCNICOS OU FRIOS:
    - É RIGOROSAMENTE PROIBIDO mencionar "visão computacional", "inteligência artificial", "IA", "algoritmos", "processamento", "cálculo de dados" ou termos de software. O texto deve ser puramente humano, empático, místico, editorial e íntimo.
-3. ALINHAMENTO COM AS PROMESSAS DA VSL:
-   - Identifique as 3 Linhas Fundamentais:
-     * Linha de Cima (Coração): o vínculo com o passado, aquela pessoa que ainda parece inacabada, a dúvida se ela percebeu o que perdeu, se faz parte do futuro ou marcou o passado para preparar para outro amor.
-     * Linha do Meio (Cabeça): crescimento e bloqueios, conflito entre querer se entregar e se proteger de decepções passadas, medo de confiar, parar de aceitar migalhas e indecisão.
-     * Linha de Baixo (Vida): energia, mudanças e decisão. A passagem entre a força da lembrança e alguém novo que realmente oferece presença e compromisso de construir juntos.
+3. PROFUNDIDADE MÁXIMA E DENSIDADE EDITORIAL (NADA DE TEXTOS CURTOS OU RESUMIDOS):
+   - Cada texto deve ser ricamente desenvolvido como em um livro publicado.
+   - Identifique as 3 Linhas Fundamentais com 3 parágrafos densos cada:
+     * Linha de Cima (Coração): o vínculo com o passado, aquela pessoa que ainda parece inacabada, a dor da espera, a dúvida se ela percebeu o que perdeu, e como isso preparou para o verdadeiro amor.
+     * Linha do Meio (Cabeça): crescimento e bloqueios, conflito entre querer se entregar e o medo de sofrer a mesma decepção, a quebra definitiva do papel de salvadora e de aceitar migalhas.
+     * Linha de Baixo (Vida): energia, vitalidade e decisão. A escolha madura entre a ilusão de uma mensagem e o compromisso real de quem quer construir presença.
    - Revelação da Alma Gêmea:
-     * Iniciais da Alma Gêmea (destaque máximo, ex: "M. R.", "J. P.", "R. S.").
+     * Iniciais da Alma Gêmea (ex: "M. R.", "J. P.", "R. S.").
      * Tipo de Conexão: "Reencontro Transformador do Passado" ou "Novo Encontro Cósmico".
-     * Previsão Temporal: datas/períodos aproximados e estações do ano.
-     * Lugares Prováveis: ambientes detalhados onde os caminhos vão se cruzar.
-     * Descrição Física: porte, tipo de olhar, sorriso, estilo e postura magnética.
-     * Perfil Aprofundado (>1.000 palavras): quem ele realmente é, se é fiel, honesto, romântico, qualidades, defeitos humanos, e como demonstra afeto no dia a dia.
+     * Previsão Temporal: estações do ano e períodos aproximados com riqueza de detalhes.
+     * Lugares Prováveis: cenários específicos e circunstâncias cotidianas onde vocês se cruzarão.
+     * Descrição Física: altura aproximada, olhar expressivo, sorriso, modo de se vestir e presença corporal.
+     * Perfil Aprofundado (MUITO LONGO - MAIS DE 1.000 PALAVRAS):
+       Desenvolva um dossiê psicológico completo em pelo menos 5 parágrafos substanciais explorando: quem ele é por dentro, valores éticos, sua postura firme sobre fidelidade e lealdade, qualidades admiráveis, pequenos defeitos humanos que o tornam autêntico, e a maneira carinhosa como ele demonstra afeto e cuidado na convivência diária.
    - 2 Bônus Exclusivos Prometidos:
-     * Bônus 1 (Valor R$ 27): Leitura do Animal Espiritual Guia no Amor (qual criatura sagrada protege a intuição dela e como aplicar essa força).
-     * Bônus 2 (Valor R$ 39): Leitura e Ritual de Limpeza Energética do Coração e Desbloqueio (diagnóstico do chacra cardíaco e ritual prático passo a passo de corte de laços tóxicos do passado).
-   - 6 Capítulos Densos: com 3 a 4 parágrafos substanciais cada.
+     * Bônus 1 (Valor R$ 27): Leitura do Animal Espiritual Guia no Amor (totem protetor, significado ancestral e guia prático para proteger a intuição afetiva).
+     * Bônus 2 (Valor R$ 39): Leitura e Ritual de Limpeza Energética do Coração e Desbloqueio (diagnóstico profundo do chacra cardíaco e ritual passo a passo de 5 etapas para corte de cordões energéticos do passado).
+   - 6 Capítulos Densos: CADA CAPÍTULO DEVE TER NO MÍNIMO 4 A 5 PARÁGRAFOS LONGOS E PROFUNDOS (350 a 450 palavras por capítulo, sem economia de palavras).
    - Bússola Diária: 5 critérios de ouro inegociáveis.
-   - Carta Pessoal assinada com amor por Clara Falk.
+   - Carta Pessoal e Bênção final de Clara Falk.
 
 ESTRUTURA EXCLUSIVA EM JSON:
 {
@@ -1443,6 +1479,54 @@ ESTRUTURA EXCLUSIVA EM JSON:
               text: readingTpl.text,
             })
           );
+        }
+
+        // Persistir Perfil e Leitura no Supabase
+        const supabase = getSupabase(env);
+        let customerId: string | null = null;
+        const cleanEmail = userEmail ? userEmail.trim().toLowerCase() : null;
+
+        if (cleanEmail) {
+          try {
+            const { data: profData } = await supabase
+              .from('profiles')
+              .upsert({
+                email: cleanEmail,
+                full_name: clientName,
+                updated_at: new Date().toISOString(),
+              }, { onConflict: 'email' })
+              .select('id')
+              .maybeSingle();
+
+            if (profData?.id) {
+              customerId = profData.id;
+            }
+          } catch (pErr) {
+            console.warn('[Supabase Profiles Error]:', pErr);
+          }
+        }
+
+        try {
+          const { error: insertErr } = await supabase.from('readings').insert({
+            customer_id: customerId,
+            customer_email: cleanEmail,
+            full_name: clientName,
+            birth_date: body.birthDate || '2000-01-01',
+            birth_time: body.birthTime || null,
+            hand_photo_url: handPhotoUrl || '',
+            status: 'completed',
+            report_data: reportData,
+            pdf_url: null,
+            completed_at: new Date().toISOString(),
+          });
+
+          if (insertErr) {
+            console.error('[Supabase Readings Insert Error]:', insertErr);
+          } else {
+            console.log('[Supabase Readings] Leitura salva com sucesso para:', cleanEmail);
+          }
+        } catch (rErr) {
+          console.error('[Supabase Readings Insert Exception]:', rErr);
         }
 
         return new Response(JSON.stringify({
