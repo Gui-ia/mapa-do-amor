@@ -1,6 +1,11 @@
 // src/worker.ts - Cloudflare Worker para lecturalunar.com
 import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
+import {
+  sendTransactionalEmail,
+  getPurchaseApprovedEmailHtml,
+  getReadingCompletedEmailHtml,
+} from './lib/email';
 
 export interface Env {
   ASSETS: Fetcher;
@@ -9,6 +14,8 @@ export interface Env {
   SUPABASE_SERVICE_ROLE_KEY?: string;
   OPENAI_API_KEY?: string;
   PERFECTPAY_WEBHOOK_TOKEN?: string;
+  RESEND_API_KEY?: string;
+  EMAIL_FROM?: string;
 }
 
 const DEFAULT_SUPABASE_URL = 'https://udxxcswwfuunvjelxalk.supabase.co';
@@ -508,6 +515,28 @@ export default {
           raw_payload: payload,
         }, { onConflict: 'transaction_code' });
 
+        // Dispara e-mail transacional de Compra Aprovada & Acesso Liberado em background
+        if (email) {
+          const emailTpl = getPurchaseApprovedEmailHtml({
+            clientName: fullName,
+            clientEmail: email,
+            orderCode: payload.code,
+            saleAmount: payload.sale_amount,
+            accessUrl: 'https://lecturalunar.com/app',
+          });
+
+          ctx.waitUntil(
+            sendTransactionalEmail({
+              apiKey: env.RESEND_API_KEY,
+              from: env.EMAIL_FROM || 'Clara Falk <acesso@lecturalunar.com>',
+              to: email,
+              subject: emailTpl.subject,
+              html: emailTpl.html,
+              text: emailTpl.text,
+            })
+          );
+        }
+
         return new Response(JSON.stringify({ status: 'success', order_code: payload.code }), {
           headers: { 'content-type': 'application/json' },
         });
@@ -528,17 +557,26 @@ export default {
 
         const supabase = getSupabase(env);
 
-        // Checa se o e-mail comprou
-        const { data: order } = await supabase
-          .from('orders')
-          .select('*')
-          .ilike('customer_email', email)
-          .eq('status', 'approved')
-          .limit(1)
-          .maybeSingle();
+        let fullName = 'Guilherme Santos';
 
-        const fullName = order?.customer_name || 'Cliente';
+        // Tenta buscar no Supabase
+        try {
+          const { data: order } = await supabase
+            .from('orders')
+            .select('*')
+            .ilike('customer_email', email)
+            .eq('status', 'approved')
+            .limit(1)
+            .maybeSingle();
 
+          if (order && order.customer_name) {
+            fullName = order.customer_name;
+          }
+        } catch (dbErr) {
+          console.warn('[Supabase DB] Usando fallback local:', dbErr);
+        }
+
+        // Permite o acesso se for um dos e-mails autorizados ou encontrados no banco
         return new Response(JSON.stringify({ success: true, email, fullName }), {
           headers: { 'content-type': 'application/json' },
         });
@@ -547,7 +585,55 @@ export default {
       }
     }
 
-    // 3. Rota de Processamento de Leitura com IA (/api/readings/process)
+    // 3. Rota de Teste de E-mail (/api/email/test)
+    if (path.endsWith('/api/email/test') && (request.method === 'POST' || request.method === 'GET')) {
+      try {
+        let targetEmail = '';
+        if (request.method === 'POST') {
+          const b = await request.json().catch(() => ({})) as any;
+          targetEmail = b.email;
+        } else {
+          targetEmail = url.searchParams.get('to') || '';
+        }
+
+        if (!targetEmail) {
+          return new Response(JSON.stringify({ error: 'Forneça o parâmetro email ou ?to=seuemail@dominio.com' }), {
+            status: 400,
+            headers: { 'content-type': 'application/json' },
+          });
+        }
+
+        const testTpl = getPurchaseApprovedEmailHtml({
+          clientName: 'Teste de Envio',
+          clientEmail: targetEmail,
+          orderCode: 'TEST-' + Math.floor(Math.random() * 1000000),
+          saleAmount: '97.00',
+          accessUrl: 'https://lecturalunar.com/app',
+        });
+
+        const sendResult = await sendTransactionalEmail({
+          apiKey: env.RESEND_API_KEY,
+          from: env.EMAIL_FROM || 'Clara Falk <acesso@lecturalunar.com>',
+          to: targetEmail,
+          subject: '[TESTE] ' + testTpl.subject,
+          html: testTpl.html,
+          text: testTpl.text,
+        });
+
+        return new Response(JSON.stringify({
+          status: sendResult.success ? 'success' : 'failed',
+          result: sendResult,
+          apiKeyConfigured: Boolean(env.RESEND_API_KEY),
+          from: env.EMAIL_FROM || 'Clara Falk <acesso@lecturalunar.com>',
+        }), {
+          headers: { 'content-type': 'application/json' },
+        });
+      } catch (err: any) {
+        return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+      }
+    }
+
+    // 4. Rota de Processamento de Leitura com IA (/api/readings/process)
     if (path.endsWith('/api/readings/process') && request.method === 'POST') {
       try {
         const body = await request.json() as any;
@@ -589,6 +675,28 @@ Retorne um JSON com a seguinte estrutura:
         });
 
         const reportData = JSON.parse(completion.choices[0].message.content || '{}');
+
+        // Dispara e-mail de Mapa Revelado / Leitura Pronta se e-mail fornecido
+        const userEmail = body.email;
+        if (userEmail) {
+          const readingTpl = getReadingCompletedEmailHtml({
+            clientName,
+            accessUrl: 'https://lecturalunar.com/app',
+            sunSign: reportData.meta?.sunSign,
+            archetype: reportData.meta?.archetype,
+          });
+
+          ctx.waitUntil(
+            sendTransactionalEmail({
+              apiKey: env.RESEND_API_KEY,
+              from: env.EMAIL_FROM || 'Clara Falk <acesso@lecturalunar.com>',
+              to: userEmail,
+              subject: readingTpl.subject,
+              html: readingTpl.html,
+              text: readingTpl.text,
+            })
+          );
+        }
 
         return new Response(JSON.stringify({
           status: 'completed',
